@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+       
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">             
+    
+    <context:component-scan base-package="controller" />  
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+
+    <!-- Conexion con BD Mysql -->
+    
+    <bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>  
+        <property name="url" value="jdbc:mysql://localhost:3306/sistema_integradoSB"></property>  
+        <property name="username" value="root"></property>  
+        <property name="password" value=""></property>
+    </bean>     
+    
+    <bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">  
+        <property name="dataSource" ref="ds"></property>
+    </bean>
+    
+    <!-- Beans -->
+    
+    <bean id="estudiopipdao" class="persistence.EstudioPIPDAO">  
+        <property name="template" ref="jt"></property>  
+    </bean>     
+    
+</beans>
