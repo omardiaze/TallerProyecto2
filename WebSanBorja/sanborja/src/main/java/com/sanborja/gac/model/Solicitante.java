@@ -20,7 +20,7 @@ import javax.persistence.Transient;
  * @author Marlon Cordova
  */
 @Entity
-@Table(name = "persona")
+@Table(name = "solicitante")
 public class Solicitante extends Base implements Serializable{
     
     @Id

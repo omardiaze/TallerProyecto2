@@ -22,7 +22,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "solicitudqr")
-public class SolicitudQR extends Base implements Serializable{
+public class Solicitud extends Base implements Serializable{
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -63,7 +63,7 @@ public class SolicitudQR extends Base implements Serializable{
     /**
      * @param idSolicitudQR the idSolicitudQR to set
      */
-    public SolicitudQR setIdSolicitudQR(Integer idSolicitudQR) {
+    public Solicitud setIdSolicitudQR(Integer idSolicitudQR) {
         this.idSolicitudQR = idSolicitudQR;
         return this;
     }
@@ -78,7 +78,7 @@ public class SolicitudQR extends Base implements Serializable{
     /**
      * @param descripcion the descripcion to set
      */
-    public SolicitudQR setDescripcion(String descripcion) {
+    public Solicitud setDescripcion(String descripcion) {
         this.descripcion = descripcion;
         return this;
     }
@@ -93,7 +93,7 @@ public class SolicitudQR extends Base implements Serializable{
     /**
      * @param fechaCreacion the fechaCreacion to set
      */
-    public SolicitudQR setFechaCreacion(Timestamp fechaCreacion) {
+    public Solicitud setFechaCreacion(Timestamp fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
         return this;
     }
@@ -108,7 +108,7 @@ public class SolicitudQR extends Base implements Serializable{
     /**
      * @param fechaLimite the fechaLimite to set
      */
-    public SolicitudQR setFechaLimite(Timestamp fechaLimite) {
+    public Solicitud setFechaLimite(Timestamp fechaLimite) {
         this.fechaLimite = fechaLimite;
         return this;
     }
@@ -123,7 +123,7 @@ public class SolicitudQR extends Base implements Serializable{
     /**
      * @param imagen the imagen to set
      */
-    public SolicitudQR setImagen(String imagen) {
+    public Solicitud setImagen(String imagen) {
         this.imagen = imagen;
         return this;
     }
@@ -139,7 +139,7 @@ public class SolicitudQR extends Base implements Serializable{
     /**
      * @param idMotivoQR the idMotivoQR to set
      */
-    public SolicitudQR setIdMotivoQR(Integer idMotivoQR) {
+    public Solicitud setIdMotivoQR(Integer idMotivoQR) {
         this.idMotivoQR = idMotivoQR;
         return this;
     }
@@ -154,7 +154,7 @@ public class SolicitudQR extends Base implements Serializable{
     /**
      * @param idTipoSolicitud the idTipoSolicitud to set
      */
-    public SolicitudQR setIdTipoSolicitud(Integer idTipoSolicitud) {
+    public Solicitud setIdTipoSolicitud(Integer idTipoSolicitud) {
         this.idTipoSolicitud = idTipoSolicitud;
         return this;
     }
@@ -169,7 +169,7 @@ public class SolicitudQR extends Base implements Serializable{
     /**
      * @param idPersona the idPersona to set
      */
-    public SolicitudQR setIdPersona(Integer idPersona) {
+    public Solicitud setIdPersona(Integer idPersona) {
         this.idPersona = idPersona;
         return this;
     }
@@ -184,7 +184,7 @@ public class SolicitudQR extends Base implements Serializable{
     /**
      * @param solicitante the solicitante to set
      */
-    public SolicitudQR setSolicitante(Solicitante solicitante) {
+    public Solicitud setSolicitante(Solicitante solicitante) {
         this.solicitante = solicitante;
         return this;
     }

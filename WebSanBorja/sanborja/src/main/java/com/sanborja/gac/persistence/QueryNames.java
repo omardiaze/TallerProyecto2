@@ -17,4 +17,67 @@ public class QueryNames {
     
     public static String MotivoQuery="select idMotivoQR as id,codigo, nombre, ufnDevolverEstado(1002,estado) as estado from motivoqr";
         
+    public static String SolicitudQuery="SELECT " +
+                    "sol.idSolicitudQR as id," +
+                    "(case sol.idTipoSolicitud " +
+                    "when 1 then rec.numero " +
+                    "when 2 then que.numero end ) as numero," +
+                    "tip.nombre as tipo," +
+                    "sol.idTipoSolicitud as idTipo," +
+                    "sol.fechaCreacion," +
+                    "sol.fechaLimite," +
+                    "sol.idMotivoQR as idMotivo," +
+                    "mot.nombre as motivo," +
+                    "concat(per.nombre,' ', per.apellido) as solicitante," +
+                    "ufnDevolverEstado(2000,sol.estado) as estado," +
+                    "sol.imagen " +
+                    "FROM solicitudqr sol " +
+                    "inner join tiposolicitud tip " +
+                    "on sol.idTipoSolicitud = tip.idTipoSolicitud " +
+                    "left outer join queja que " +
+                    "on sol.idSolicitudQR = que.idSolicitudQR " +
+                    "left outer join reclamo rec " +
+                    "on sol.idSolicitudQR = rec.idSolicitudQR " +
+                    "inner join motivoqr mot " +
+                    "on sol.idMotivoQR = mot.idMotivoQR " +
+                    "inner join persona per " +
+                    "on sol.idPersona =  per.idPersona ";
+    
+     public static String SolicitudFindById="SELECT " +
+                    "sol.idSolicitudQR as id," +
+                    "(case sol.idTipoSolicitud " +
+                    "when 1 then rec.numero " +
+                    "when 2 then que.numero end ) as numero," +
+                    "tip.nombre as tipo," +
+                    "sol.idTipoSolicitud as idTipo," +
+                    "sol.fechaCreacion," +
+                    "sol.fechaLimite," +
+                    "sol.idMotivoQR as idMotivo," +
+                    "mot.nombre as motivo," +
+                    "concat(per.nombre,' ', per.apellido) as solicitante," +
+                    "ufnDevolverEstado(2000,sol.estado) as estado," +
+                    "sol.imagen, " +             
+                    "td.nombre as tipoDocumento,"+
+                    "per.numeroDocumento,"+
+                    "soli.correo,"+
+                    "soli.telefono,"+
+                    "soli.direccion," +
+                    "sol.descripcion "+             
+                    "FROM solicitudqr sol " +
+                    "inner join tiposolicitud tip " +
+                    "on sol.idTipoSolicitud = tip.idTipoSolicitud " +
+                    "left outer join queja que " +
+                    "on sol.idSolicitudQR = que.idSolicitudQR " +
+                    "left outer join reclamo rec " +
+                    "on sol.idSolicitudQR = rec.idSolicitudQR " +
+                    "inner join motivoqr mot " +
+                    "on sol.idMotivoQR = mot.idMotivoQR " +
+                    "inner join persona per " +
+                    "on sol.idPersona =  per.idPersona "+
+             
+                    "inner join tipodocumento td "+
+                    "on td.idTipoDocumento = per.idTipoDocumento "+
+                    "inner join solicitante soli "+
+                    "on sol.idPersona = soli.idPersona and per.idPersona = soli.idPersona "+
+                    " where sol.idSolicitudQR=:id";
 }

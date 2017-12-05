@@ -31,7 +31,36 @@
                     <h3>Solicitudes </h3>
                 </div>
                 <div class="card-body">
-                 
+                 <table class="table table-striped">
+                    <thead class="mdb-color darken-1">
+                        <tr class="text-white">
+                            <th width="12%"></th>
+                            <th width="10%">Número</th>
+                            <th width="8%">Tipo</th>
+                            <th width="15%">Fecha Creación</th>
+                            <th width="30%">Solicitante</th>
+                            <th width="15%">Estado</th>
+                        </tr>
+                    </thead>
+                    <c:forEach var="entity" items="${list}">
+                        <tr>
+                            <td>
+                                <a href="<c:url value = "/intranet/solicitud/ver/${entity.id}"/>"  class="btn btn-sm btn-success">
+                                    <i class="fa fa-search" aria-hidden="true"></i> 
+                                </a>   
+                                    &nbsp;
+                                <a href="<c:url value = "/intranet/solicitud/eliminar/${entity.id}"/>"   class="btn btn-sm btn-danger">
+                                    <i class="fa fa-remove" aria-hidden="true"></i> 
+                                </a>   
+                            </td>
+                            <td>${entity.numero}</td>
+                            <td>${entity.tipo}</td>   
+                            <td>${entity.fechaCreacion}</td> 
+                            <td>${entity.solicitante}</td> 
+                            <td>${entity.estado}</td>  
+                        </tr>
+                    </c:forEach>
+                </table>
                 
                 </div>
             </div>

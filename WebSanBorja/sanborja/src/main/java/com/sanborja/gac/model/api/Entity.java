@@ -12,8 +12,9 @@ package com.sanborja.gac.model.api;
 public class Entity {	
 
 	public static String TipoSolicitud ="TipoSolicitud";	
-	public static String Persona ="Persona";
-	public static String TipoMovimiento ="Tipo de Movimiento";
+	public static String Reclamo ="Reclamo";	
+        public static String Queja ="Queja";	
+	public static String Persona="Persona";
 	
 }
 

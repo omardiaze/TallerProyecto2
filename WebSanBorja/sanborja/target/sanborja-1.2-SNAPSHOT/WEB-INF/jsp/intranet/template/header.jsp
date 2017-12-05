@@ -9,7 +9,7 @@
 <!-- Material Design Bootstrap -->
 <link href="<c:url value="/resources/css/mdb.css"/>" rel="stylesheet">
 <!-- Your custom styles (optional) -->
-<link href="<c:url value="/resources/css/style.min.css"/>" rel="stylesheet">
+
 
 <title>San Borja Intranet</title>
 

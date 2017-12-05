@@ -17,7 +17,7 @@ import javax.validation.constraints.Min;
 public class Base {
     
     @Min(value = 1, message = "Seleccione un Estado valido.")
-    @Column(name="ESTADO")
+    @Column(name="estado")
     private Integer estado;
 
     
