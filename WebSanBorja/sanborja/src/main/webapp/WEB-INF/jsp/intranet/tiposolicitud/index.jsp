@@ -21,7 +21,7 @@
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item"><a href="#">Atención al Ciudadano</a></li>
+                  <li class="breadcrumb-item"><a href="<c:url value = "/intranet"/>">Atención al Ciudadano</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Tipo de Solicitud</li>
                 </ol>
             </nav>              
@@ -32,8 +32,8 @@
                       <h3>Tipo de Solicitud </h3>
                   </div>
                   <div style="float: right">
-                        <a href="/sanborja/intranet/tiposolicitud/nuevo"  class="btn btn-md btn-primary">
-                            <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Nuevo
+                        <a href="<c:url value = "/intranet/tiposolicitud/crear"/>"  class="btn btn-md btn-primary">
+                            <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; Crear
                         </a>           
                   </div>
                   <div style="clear: both"></div>
@@ -51,11 +51,11 @@
                     <c:forEach var="entity" items="${list}">
                         <tr>
                             <td>
-                                <a href="/sanborja/intranet/tiposolicitud/editar/${entity.id}"  class="btn btn-sm btn-success">
+                                <a href="<c:url value = "/intranet/tiposolicitud/editar/${entity.id}"/>"  class="btn btn-sm btn-success">
                                     <i class="fa fa-edit" aria-hidden="true"></i> 
                                 </a>   
                                     &nbsp;
-                                <a href="/sanborja/intranet/tiposolicitud/editar/${entity.id}"  class="btn btn-sm btn-danger">
+                                <a href="<c:url value = "/intranet/tiposolicitud/eliminar/${entity.id}"/>"   class="btn btn-sm btn-danger">
                                     <i class="fa fa-remove" aria-hidden="true"></i> 
                                 </a>   
                             </td>

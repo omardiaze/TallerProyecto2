@@ -16,6 +16,8 @@ import com.sanborja.gac.entities.TipoSolicitud;
 import com.sanborja.gac.entities.api.TipoSolicitudQuery;
 import com.sanborja.gac.entities.api.CheckStatus;
 import com.sanborja.gac.entities.api.Status;
+import com.sanborja.gac.entities.api.TipoSolicitudFindByIdOutput;
+import com.sanborja.gac.entities.api.TipoSolicitudInput;
 import com.sanborja.gac.persistence.TipoSolicitudRepository;
 /**
  *
@@ -46,6 +48,91 @@ public class TipoSolicitudService {
 
         data.setData(list);
         return data;
+    }
+    
+    public TipoSolicitudFindByIdOutput findById(int id) {
+        TipoSolicitudFindByIdOutput moneda = new TipoSolicitudFindByIdOutput();		 
+        moneda = categoriaRepository.findById(id);
+
+        if(moneda!=null) {
+            if(moneda.getId()!=0) {
+                    moneda.setApistatus(Status.Ok);
+
+            }else{
+                    moneda.setApistatus(Status.Error);
+                    moneda.setApimessage("No hay datos");
+            }
+        }else{
+                moneda = new TipoSolicitudFindByIdOutput();
+                moneda.setApistatus(Status.Error);
+                moneda.setApimessage("No hay datos");
+        }
+
+        return moneda;
+    }
+
+    public CheckStatus create(TipoSolicitudInput input) {
+        CheckStatus checkStatus= new CheckStatus();
+        TipoSolicitud tipoDocumento= new TipoSolicitud();			 
+
+        String error="";
+        if(input==null){
+            error="ingresar el tipo de la solicitud";
+        }else{
+            if(input.getNombre().isEmpty()){
+                error="<li>Debe ingresar nombre</li>";
+            }
+        }
+        
+        
+        if(error.trim().length()==0){
+            tipoDocumento	
+            .setNombre(input.getNombre())		               
+            .setEstado(input.getEstado()) ;
+
+            checkStatus = categoriaRepository.create(tipoDocumento);
+        }else{
+            checkStatus.setApistatus(Status.Error);
+            checkStatus.setApimessage(error);
+        }
+        
+        return checkStatus;
+    }
+
+    public CheckStatus edit(TipoSolicitudInput input) {
+        CheckStatus checkStatus= new CheckStatus();
+        TipoSolicitud tipoDocumento= new TipoSolicitud();			
+ 		 
+        String error="";
+        if(input==null){
+            error="ingresar el tipo de la solicitud";
+        }else{
+            if(input.getNombre().isEmpty()){
+                error="<li>Debe ingresar nombre</li>";
+            }
+        }        
+        
+        if(error.trim().length()==0){            
+         
+            tipoDocumento
+                .setIdTipoSolicitud(input.getId())		
+                .setNombre(input.getNombre())
+                .setEstado(input.getEstado());		
+
+            checkStatus = categoriaRepository.edit(tipoDocumento);  
+            
+        }else{
+            checkStatus.setApistatus(Status.Error);
+            checkStatus.setApimessage(error);
+        }
+        
+        return checkStatus;
+    }
+	
+    public CheckStatus delete(Integer id) {
+        CheckStatus checkStatus= new CheckStatus();
+        checkStatus = categoriaRepository.delete(id);
+        return checkStatus;
     }
         
 }

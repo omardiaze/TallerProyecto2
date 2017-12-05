@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
     
     @RequestMapping("/")  
-    public String principal(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String index(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         model.addAttribute("demo", "hollla");   
         return "index";

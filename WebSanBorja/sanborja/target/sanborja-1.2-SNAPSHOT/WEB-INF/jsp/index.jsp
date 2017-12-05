@@ -25,9 +25,9 @@
                 </div>                
                 <div class="card-body" style="padding-left: 50px;padding-right: 50px;">
                           <br/>
-                    <a class="btn btn-primary btn-lg btn-block" href="/extranet" role="button">Extranet</a>
+                    <a class="btn btn-primary btn-lg btn-block" href="<c:url value = "/extranet"/>" role="button">Extranet</a>
                     <br/><br/>
-                    <a class="btn btn-secondary btn-lg btn-block" href="/intranet" role="button">Intranet</a>
+                    <a class="btn btn-secondary btn-lg btn-block" href="<c:url value = "/intranet"/>"  role="button">Intranet</a>
                        <br/><br/>
                 </div>
             </div>

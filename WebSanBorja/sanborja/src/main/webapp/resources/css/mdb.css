@@ -7047,7 +7047,7 @@ body.scrollable {
 
 a.waves-effect, a.waves-light {
   display: inline-block; }
-
+/*
 input[type=text],
 input[type=password],
 input[type=email],
@@ -7314,7 +7314,7 @@ textarea.md-textarea {
     textarea.md-textarea.input-alternate:hover,
     textarea.md-textarea.input-alternate:focus {
       box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08) !important;
-      border-bottom: 0; }
+      border-bottom: 0; }*/
 
 .form-control {
   padding: 0;
