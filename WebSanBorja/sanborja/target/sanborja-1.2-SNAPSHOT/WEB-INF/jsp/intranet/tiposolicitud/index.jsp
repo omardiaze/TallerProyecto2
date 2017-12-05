@@ -22,14 +22,14 @@
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
                   <li class="breadcrumb-item"><a href="<c:url value = "/intranet"/>">Atención al Ciudadano</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Tipo de Solicitud</li>
+                  <li class="breadcrumb-item active" aria-current="page">Tipo de Solicitudes</li>
                 </ol>
             </nav>              
             
             <div class="card">
               <div class="card-header">
                   <div style="float: left;margin-top: 7px">
-                      <h3>Tipo de Solicitud </h3>
+                      <h3>Tipo de Solicitudes </h3>
                   </div>
                   <div style="float: right">
                         <a href="<c:url value = "/intranet/tiposolicitud/crear"/>"  class="btn btn-md btn-primary">

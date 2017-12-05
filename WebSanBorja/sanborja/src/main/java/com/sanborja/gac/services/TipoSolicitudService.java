@@ -11,13 +11,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sanborja.gac.entities.api.Data;
-import com.sanborja.gac.entities.TipoSolicitud;
-import com.sanborja.gac.entities.api.TipoSolicitudQuery;
-import com.sanborja.gac.entities.api.CheckStatus;
-import com.sanborja.gac.entities.api.Status;
-import com.sanborja.gac.entities.api.TipoSolicitudFindByIdOutput;
-import com.sanborja.gac.entities.api.TipoSolicitudInput;
+import com.sanborja.gac.model.api.Data;
+import com.sanborja.gac.model.TipoSolicitud;
+import com.sanborja.gac.model.api.TipoSolicitudQuery;
+import com.sanborja.gac.model.api.CheckStatus;
+import com.sanborja.gac.model.api.Status;
+import com.sanborja.gac.model.api.TipoSolicitudFindByIdOutput;
+import com.sanborja.gac.model.api.TipoSolicitudInput;
 import com.sanborja.gac.persistence.TipoSolicitudRepository;
 /**
  *
@@ -27,12 +27,12 @@ import com.sanborja.gac.persistence.TipoSolicitudRepository;
 public class TipoSolicitudService {
     
     @Autowired
-    TipoSolicitudRepository categoriaRepository;
+    TipoSolicitudRepository tipoSolicitudRepository;
 
     public Data<TipoSolicitudQuery> query() {
         Data <TipoSolicitudQuery> data = new Data<TipoSolicitudQuery>();
         List<TipoSolicitudQuery> list;
-        list = categoriaRepository.query();
+        list = tipoSolicitudRepository.query();
 
         if(list!=null) {
             if(!list.isEmpty()) {
@@ -52,7 +52,7 @@ public class TipoSolicitudService {
     
     public TipoSolicitudFindByIdOutput findById(int id) {
         TipoSolicitudFindByIdOutput moneda = new TipoSolicitudFindByIdOutput();		 
-        moneda = categoriaRepository.findById(id);
+        moneda = tipoSolicitudRepository.findById(id);
 
         if(moneda!=null) {
             if(moneda.getId()!=0) {
@@ -90,7 +90,7 @@ public class TipoSolicitudService {
             .setNombre(input.getNombre())		               
             .setEstado(input.getEstado()) ;
 
-            checkStatus = categoriaRepository.create(tipoDocumento);
+            checkStatus = tipoSolicitudRepository.create(tipoDocumento);
         }else{
             checkStatus.setApistatus(Status.Error);
             checkStatus.setApimessage(error);
@@ -119,7 +119,7 @@ public class TipoSolicitudService {
                 .setNombre(input.getNombre())
                 .setEstado(input.getEstado());		
 
-            checkStatus = categoriaRepository.edit(tipoDocumento);  
+            checkStatus = tipoSolicitudRepository.edit(tipoDocumento);  
             
         }else{
             checkStatus.setApistatus(Status.Error);
@@ -131,7 +131,7 @@ public class TipoSolicitudService {
 	
     public CheckStatus delete(Integer id) {
         CheckStatus checkStatus= new CheckStatus();
-        checkStatus = categoriaRepository.delete(id);
+        checkStatus = tipoSolicitudRepository.delete(id);
         return checkStatus;
     }
         

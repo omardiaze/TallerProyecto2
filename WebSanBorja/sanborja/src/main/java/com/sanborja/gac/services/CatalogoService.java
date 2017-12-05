@@ -5,10 +5,10 @@
  */
 package com.sanborja.gac.services;
 
-import com.sanborja.gac.entities.api.CatalogoQuery;
-import com.sanborja.gac.entities.api.Data;
-import com.sanborja.gac.entities.api.Status;
-import com.sanborja.gac.entities.api.TipoSolicitudQuery;
+import com.sanborja.gac.model.api.CatalogoQuery;
+import com.sanborja.gac.model.api.Data;
+import com.sanborja.gac.model.api.Status;
+import com.sanborja.gac.model.api.TipoSolicitudQuery;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;

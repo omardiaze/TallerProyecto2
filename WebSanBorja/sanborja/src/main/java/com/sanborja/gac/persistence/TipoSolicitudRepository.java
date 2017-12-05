@@ -19,12 +19,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sanborja.gac.entities.TipoSolicitud;
-import com.sanborja.gac.entities.api.CheckStatus;
-import com.sanborja.gac.entities.api.Status;
-import com.sanborja.gac.entities.api.TipoSolicitudQuery;
-import com.sanborja.gac.entities.api.Entity;
-import com.sanborja.gac.entities.api.TipoSolicitudFindByIdOutput;
+import com.sanborja.gac.model.TipoSolicitud;
+import com.sanborja.gac.model.api.CheckStatus;
+import com.sanborja.gac.model.api.Status;
+import com.sanborja.gac.model.api.TipoSolicitudQuery;
+import com.sanborja.gac.model.api.Entity;
+import com.sanborja.gac.model.api.TipoSolicitudFindByIdOutput;
 
 @Repository
 @Transactional

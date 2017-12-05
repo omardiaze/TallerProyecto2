@@ -27,20 +27,14 @@
             </nav>              
             
             <div class="card">
-              <div class="card-header">
-                 
-                      <h3>Gestión de Atención al Ciudadano </h3>
-               
-                  
-                 
-              </div>
-              <div class="card-body">
-                 
-                </table>
-              </div>
-            </div>
-             
-        </div>        
+                <div class="card-header">                 
+                    <h3>Gestión de Atención al Ciudadano </h3>                 
+                </div>
+                <div class="card-body">                 
+              
+                </div>
+            </div>             
+        </div>
     
  
         <%@include file="template/footer.jsp" %>

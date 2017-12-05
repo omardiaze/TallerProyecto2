@@ -5,13 +5,13 @@
  */
 package com.sanborja.gac.controllers;
 
-import com.sanborja.gac.entities.api.Status;
-import com.sanborja.gac.entities.api.CatalogoQuery;
-import com.sanborja.gac.entities.api.CheckStatus;
-import com.sanborja.gac.entities.api.Data;
-import com.sanborja.gac.entities.api.TipoSolicitudFindByIdOutput;
-import com.sanborja.gac.entities.api.TipoSolicitudInput;
-import com.sanborja.gac.entities.api.TipoSolicitudQuery;
+import com.sanborja.gac.model.api.Status;
+import com.sanborja.gac.model.api.CatalogoQuery;
+import com.sanborja.gac.model.api.CheckStatus;
+import com.sanborja.gac.model.api.Data;
+import com.sanborja.gac.model.api.TipoSolicitudFindByIdOutput;
+import com.sanborja.gac.model.api.TipoSolicitudInput;
+import com.sanborja.gac.model.api.TipoSolicitudQuery;
 import com.sanborja.gac.services.CatalogoService;
 import com.sanborja.gac.services.TipoSolicitudService;
 import java.io.IOException;

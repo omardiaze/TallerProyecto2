@@ -40,9 +40,14 @@
                                 Atención al Ciudadano
                             </a>
                             <div class="dropdown-menu">                             
-                                <a class="dropdown-item" href="#">Link 1</a>
-                                <a class="dropdown-item" href="#">Link 2</a>
-                                <a class="dropdown-item" href="#">Link 3</a>
+                                <a class="dropdown-item" href="<c:url value = "/intranet/solicitud"/>">Solicitudes</a>
+                                <a class="dropdown-item" href="#">Asignación</a>
+                                <a class="dropdown-item" href="#">Respuestas</a>
+                                <a class="dropdown-item" href="#">Reporte</a>
+                                <a class="dropdown-item" href="<c:url value = "/intranet/motivo"/>">Motivo</a>
+                                <a class="dropdown-item" href="<c:url value = "/intranet/tiposolicitud"/>">Tipo Solicitud</a>
+                                <a class="dropdown-item" href="<c:url value = "/intranet/tipodocumento"/>">Tipo Documento</a>
+                                
                             </div>
                         </li>                        
                         

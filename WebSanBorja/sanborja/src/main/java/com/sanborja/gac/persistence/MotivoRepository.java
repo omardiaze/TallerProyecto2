@@ -5,7 +5,7 @@
  */
 package com.sanborja.gac.persistence;
 
-import com.sanborja.gac.entities.api.MotivoQuery;
+import com.sanborja.gac.model.api.MotivoQuery;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.SQLQuery;
@@ -25,13 +25,12 @@ public class MotivoRepository {
     @Autowired
     SessionFactory session;
 	
-    @Autowired
-    HelperRepository helperRepository;	
+    
         
     @SuppressWarnings("unchecked")
     public List<MotivoQuery> query() {
 
-        SQLQuery query = session.getCurrentSession().createSQLQuery(QueryNames.MotivoQRQuery);
+        SQLQuery query = session.getCurrentSession().createSQLQuery(QueryNames.MotivoQuery);
         List<Object[]> rows = query.list();
         List<MotivoQuery> list = new ArrayList<MotivoQuery>();
                 

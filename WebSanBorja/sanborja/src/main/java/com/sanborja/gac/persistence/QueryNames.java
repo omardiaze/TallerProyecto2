@@ -11,7 +11,10 @@ package com.sanborja.gac.persistence;
  */
 public class QueryNames {
     public static String TipoSolicitudQuery="select idTipoSolicitud as id,codigo, nombre, ufnDevolverEstado(1000,estado) as estado from tiposolicitud";
-    public static String TipoSolicitudFindById="select idTipoSolicitud as id,codigo, nombre,estado from tiposolicitud  where idTipoSolicitud=:id";
+    public static String TipoSolicitudFindById="select idTipoSolicitud as id,codigo, nombre,estado from tiposolicitud  where idTipoSolicitud=:id";   
+   
+    public static String TipoDocumentoQuery="select idTipoDocumento as id,codigo, nombre, ufnDevolverEstado(1001,estado) as estado from tipodocumento";
     
-    public static String MotivoQRQuery="select idMotivoQR as id,codigo, nombre, ufnDevolverEstado(1001,estado) as estado from tiposolicitud";
+    public static String MotivoQuery="select idMotivoQR as id,codigo, nombre, ufnDevolverEstado(1002,estado) as estado from motivoqr";
+        
 }
