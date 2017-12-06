@@ -156,13 +156,13 @@
                                 </div>
                             </div>
                                         
-                                <div class="row">
+                             <div class="row">
                                 <div class="mui-col-md-12 mui-col-xs-12">
                                     <div class="mui-textfield">
                                         <form:textarea path="direccion" id="txtDireccion"  rows="1" cols="30" />                                        
                                         <label id="lblDireccion" for="txtDireccion">* Ingrese su dirección</label>
                                     </div>       
-                                </div>
+                             </div>
                                 
                             </div>
                         </div>
@@ -218,11 +218,8 @@
                                         <form:textarea path="descripcion" id="txtDescripcion"  rows="1" cols="30" />                                        
                                         <label id="lblDescripcion" for="txtDescripcion">* Ingrese su descripción</label>
                                     </div>       
-                                </div>
-                                
-                            </div>
-                            
-                           
+                                </div> 
+                            </div> 
                                         
                         </div>
                                                 

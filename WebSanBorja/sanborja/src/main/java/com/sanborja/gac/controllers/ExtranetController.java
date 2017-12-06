@@ -72,21 +72,20 @@ public class ExtranetController {
         
         model.addAttribute("motivos", dataMotivo.getData());        
         model.addAttribute("tipodocumentos", dataTipoDocumento.getData());        
-        model.addAttribute("solicitud", solicitud);   
         
-        if(checkStatus.getApistatus().equals(Status.Ok)){        
-          
+        
+        if(checkStatus.getApistatus().equals(Status.Ok)){   
+            solicitud = new SolicitudInput();
+
             model.addAttribute("error",null);
             model.addAttribute("ok",checkStatus.getApimessage());
-             
-         
-        }else{
-            
+              
+        }else{ 
             model.addAttribute("error", checkStatus.getApimessage());
             model.addAttribute("ok",null);
             
         }       
-        
+        model.addAttribute("solicitud", solicitud);   
         return "extranet/index";
     }
     
