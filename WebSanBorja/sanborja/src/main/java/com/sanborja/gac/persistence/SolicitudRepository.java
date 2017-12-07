@@ -247,7 +247,7 @@ public class SolicitudRepository {
                 nombreentidad="Queja";
             }
             
-            checkStatus.setApimessage("Se registro su "+nombreentidad+" Nro "+numero+"  satisfactoriamente.");	
+            checkStatus.setApimessage("Se registró su "+nombreentidad+" Nro "+numero+"  satisfactoriamente.");	
             
         }else {	
             checkStatus.setApistatus(Status.Error);

@@ -29,7 +29,7 @@
               <div class="mui-row" style="padding-top: 10px;">
                 <div class="mui-col-md-3 mui-col-xs-12 mui--hidden-xs">
                     <div style="text-align: left">
-                        <h3 style="color: #39A0AA">Pedidos y Sugerencias</h3>
+                        <h3 style="color: #39A0AA">Quejas y Reclamos</h3>
 
                         <ul>
                             <li><a href="">Crear Queja o Reclamo</a></li>
@@ -74,13 +74,13 @@
                                         <form:select path="idTipoDocumento" id="cboEstado" >
                                             <form:options items="${tipodocumentos}" itemValue="id" itemLabel="nombre" />
                                         </form:select>
-                                        <label>* Seleccione Tipo de documento</label>
+                                        <label>* Seleccione tipo de documento</label>
                                     </div>       
                                 </div>
                                 <div class="mui-col-md-6 mui-col-xs-12">
                                     <div class="mui-textfield">
                                         <form:input type="text" id="txtNumeroDocumento" maxlength="12" placeholder="${solicitud.numeroDocumentoError}" onkeypress='validate(event)' class="mui-textfield mui-textfield--float-label ${not empty solicitud.numeroDocumentoError ? 'border-color-text-error' : 'border-color-text-ok'}" path="numeroDocumento"  />
-                                        <label id="lblNumeroDocumento" for="txtNumeroDocumento" class="${not empty solicitud.numeroDocumentoError ? 'color-label-error' : 'color-label-ok'}">* Ingrese Nro de documento</label>
+                                        <label id="lblNumeroDocumento" for="txtNumeroDocumento" class="${not empty solicitud.numeroDocumentoError ? 'color-label-error' : 'color-label-ok'}">* Ingrese número de documento</label>
                                     </div>       
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                             <div class="row">
                                 <div class="mui-col-md-6 mui-col-xs-12">
                                     <div class="mui-textfield">
-                                        <form:input type="number" id="txtTelefono" placeholder="${solicitud.telefonoError}" class="mui-textfield mui-textfield--float-label ${not empty solicitud.telefonoError ? 'border-color-text-error' : 'border-color-text-ok'}" path="telefono" />
+                                        <form:input type="text" maxlength="9" id="txtTelefono" placeholder="${solicitud.telefonoError}" onkeypress='validate(event)' class="mui-textfield mui-textfield--float-label ${not empty solicitud.telefonoError ? 'border-color-text-error' : 'border-color-text-ok'}" path="telefono" />
                                         <label id="lblTelefono" for="txtTelefono" class="${not empty solicitud.telefonoError ? 'color-label-error' : 'color-label-ok'}">* Ingrese su teléfono</label>
                                     </div>       
                                 </div>
@@ -135,7 +135,7 @@
                              <div class="row">
                                 <div class="mui-col-md-12 mui-col-xs-12">
                                     <div class="mui-textfield">
-                                       <label id="lblDocumento">¿Qué desea registrar?</label>
+                                        <label id="lblDocumento" class="color-label-ok">¿Qué desea registrar?</label>
                                         <div style="padding-bottom: 0px">
                                             <div style="float: left">
                                                 <div class="mui-radio">
@@ -166,7 +166,7 @@
                                         <form:select path="idMotivo" id="cboMotivo" >
                                             <form:options items="${motivos}" itemValue="id" itemLabel="nombre" />
                                         </form:select>
-                                         <label>Seleccione Motivo</label>
+                                        <label class="color-label-ok">Seleccione motivo</label>
                                     </div>       
                                 </div>                                 
                             </div>
