@@ -247,7 +247,7 @@
                 margin: '100px auto',
                 backgroundColor: '#fff'
             });
-            var $formEl = $('<form class="mui-form" style="padding:10px"><div><h3>Mensaje de Sistema </h3><hr/></div><div>  <h4>${ok}</h4></div><div class="mui--text-right"><button class="mui-btn mui-btn--raised" onClick="return closeModal();"> Cerrar</button></div></div></form>');
+            var $formEl = $('<form class="mui-form" style="padding:10px"><div><h3>Mensaje del Sistema </h3><hr/></div><div>  <h4>${ok}</h4></div><div class="mui--text-right"><button class="mui-btn mui-btn--raised" onClick="return closeModal();"> Cerrar</button></div></div></form>');
             $modalEl.append($formEl);
 
             // show modal

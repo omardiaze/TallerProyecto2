@@ -28,7 +28,7 @@ CREATE TABLE `catalogoestado` (
   `valor` int(11) NOT NULL,
   `nombre` varchar(500) NOT NULL,
   PRIMARY KEY (`idCatalogoEstado`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `catalogoestado` (
 
 LOCK TABLES `catalogoestado` WRITE;
 /*!40000 ALTER TABLE `catalogoestado` DISABLE KEYS */;
-INSERT INTO `catalogoestado` VALUES (1,1000,1000,'Estado Tipo Solicitud'),(2,1000,1,'Activo'),(3,1000,2,'Inactivo'),(4,1001,1001,'Estado Tipo Documento'),(5,1001,1,'Activo'),(6,1001,2,'Inactivo'),(7,1002,1002,'Estado Motivo'),(8,1002,1,'Activo'),(9,1002,2,'Inactivo'),(10,2000,2000,'Estado Solicitud'),(11,2000,1,'Pendiente'),(12,2000,2,'Asignado');
+INSERT INTO `catalogoestado` VALUES (1,1000,1000,'Estado Tipo Solicitud'),(2,1000,1,'Activo'),(3,1000,2,'Inactivo'),(4,1001,1001,'Estado Tipo Documento'),(5,1001,1,'Activo'),(6,1001,2,'Inactivo'),(7,1002,1002,'Estado Motivo'),(8,1002,1,'Activo'),(9,1002,2,'Inactivo'),(10,2000,2000,'Estado Solicitud'),(11,2000,1,'Pendiente'),(12,2000,2,'Asignado'),(13,2001,2001,'Notificacion'),(14,2001,1,'Correo'),(15,2001,2,'Domicilio');
 /*!40000 ALTER TABLE `catalogoestado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +63,7 @@ CREATE TABLE `entidad` (
 
 LOCK TABLES `entidad` WRITE;
 /*!40000 ALTER TABLE `entidad` DISABLE KEYS */;
-INSERT INTO `entidad` VALUES (1,'TipoSolicitud','TS',10),(2,'TipoDocumento','TD',3),(3,'Motivo','MO',2),(4,'Persona','PE',36),(5,'Solicitud','SO',0),(6,'Reclamo','',18),(7,'Queja','',7);
+INSERT INTO `entidad` VALUES (1,'TipoSolicitud','TS',10),(2,'TipoDocumento','TD',3),(3,'Motivo','MO',2),(4,'Persona','PE',69),(5,'Solicitud','SO',0),(6,'Reclamo','',50),(7,'Queja','',8);
 /*!40000 ALTER TABLE `entidad` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,8 +79,9 @@ CREATE TABLE `motivoqr` (
   `codigo` varchar(50) NOT NULL,
   `nombre` varchar(500) NOT NULL,
   `estado` int(11) NOT NULL,
+  `idTipoSolicitud` int(11) DEFAULT NULL,
   PRIMARY KEY (`idMotivoQR`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,7 +90,7 @@ CREATE TABLE `motivoqr` (
 
 LOCK TABLES `motivoqr` WRITE;
 /*!40000 ALTER TABLE `motivoqr` DISABLE KEYS */;
-INSERT INTO `motivoqr` VALUES (1,'MO0001','Motivo 1',1),(2,'MO0002','Motivo 2',1);
+INSERT INTO `motivoqr` VALUES (1,'MO0001','Inadecuado Servicio en Areas Verdes',1,1),(2,'MO0002','Impuesto a la Renta y Arbitrios',1,1),(3,'MO0003','Plataforma de Atencion',1,1),(4,'MO0004','Mantenimiento de veredas',1,2),(5,'MO0005','Ruidos molestos',1,2);
 /*!40000 ALTER TABLE `motivoqr` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,7 +109,7 @@ CREATE TABLE `persona` (
   `numeroDocumento` varchar(50) NOT NULL,
   `idTipoDocumento` int(11) NOT NULL,
   PRIMARY KEY (`idPersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +118,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES (19,'PE0014','Marlon','Cordova Torres','45477693',1),(20,'PE0015','Marlon','Cordova Torres','45477693',1),(21,'PE0016','Marlon','Cordova Torres','45477693',1),(22,'PE0017','Marlon','Cordova Torres','45477693',1),(23,'PE0018','Marlon','Cordova Torres','45477693',1),(24,'PE0019','Marlon','Cordova Torres','45477693',1),(25,'PE0020','Marlon','Cordova Torres','45477693',1),(26,'PE0021','Marlon','Cordova Torres','45477693',1),(27,'PE0022','Marlon','Cordova Torres','45477693',1),(28,'PE0023','Marlon','Cordova Torres','45477693',1),(29,'PE0024','Marlon','Cordova Torres','45477693',1),(30,'PE0025','Marlon','Cordova Torres','45477693',1),(31,'PE0026','Marlon','Cordova Torres','45477693',1),(32,'PE0027','Marlon','Cordova Torres','45477693',1),(33,'PE0028','Marlon','Cordova Torres','45477693',1),(34,'PE0029','Marlon','Cordova Torres','45477693',1),(35,'PE0030','Marlon','Cordova Torres','45477693',1),(36,'PE0031',' Otro Movimiento','Cordova Torres','45477693',1),(37,'PE0032',' Otro Movimiento','Cordova Torres','45477693',1),(38,'PE0033','Marlon','Cordova Torres','45477693',1),(39,'PE0034','Marlon','Cordova Torres','45477693',1),(40,'PE0035','Marlon','Cordova Torres','45477693',1),(41,'PE0036','Marlon','Cordova Torres','45477693',1);
+INSERT INTO `persona` VALUES (19,'PE0014','Marlon','Cordova Torres','45477693',1),(20,'PE0015','Marlon','Cordova Torres','45477693',1),(21,'PE0016','Marlon','Cordova Torres','45477693',1),(22,'PE0017','Marlon','Cordova Torres','45477693',1),(23,'PE0018','Marlon','Cordova Torres','45477693',1),(24,'PE0019','Marlon','Cordova Torres','45477693',1),(25,'PE0020','Marlon','Cordova Torres','45477693',1),(26,'PE0021','Marlon','Cordova Torres','45477693',1),(27,'PE0022','Marlon','Cordova Torres','45477693',1),(28,'PE0023','Marlon','Cordova Torres','45477693',1),(29,'PE0024','Marlon','Cordova Torres','45477693',1),(30,'PE0025','Marlon','Cordova Torres','45477693',1),(31,'PE0026','Marlon','Cordova Torres','45477693',1),(32,'PE0027','Marlon','Cordova Torres','45477693',1),(33,'PE0028','Marlon','Cordova Torres','45477693',1),(34,'PE0029','Marlon','Cordova Torres','45477693',1),(35,'PE0030','Marlon','Cordova Torres','45477693',1),(36,'PE0031',' Otro Movimiento','Cordova Torres','45477693',1),(37,'PE0032',' Otro Movimiento','Cordova Torres','45477693',1),(38,'PE0033','Marlon','Cordova Torres','45477693',1),(39,'PE0034','Marlon','Cordova Torres','45477693',1),(40,'PE0035','Marlon','Cordova Torres','45477693',1),(41,'PE0036','Marlon','Cordova Torres','45477693',1),(42,'PE0037','Marlon','Cordova Torres','45477693',1),(43,'PE0038','6776u67u','u76u67u','45477693',1),(44,'PE0039','Marlon','Cordova Torres','45477693',1),(45,'PE0040','demo','cordova','45477693',1),(46,'PE0041','demo d','cordova','45477693',1),(47,'PE0042','Marlon','Cordova Torres','45477693',1),(48,'PE0043','Marlon','Cordova Torres','45477693',1),(49,'PE0044','marlon','cordova','45477693',1),(50,'PE0045','marlon','cordova','45477693',1),(51,'PE0046','Marlon','Cordova','45477693',1),(52,'PE0047','Marlon','Cordova Torres','45477693',1),(53,'PE0048','Marlon','Cordova Torres','45477693',1),(54,'PE0049','Marlon','Cordova Torres','45477693',1),(55,'PE0050','Marlon','Cordova Torres','45477693',1),(56,'PE0051','Marlon','Cordova Torres','45477693',1),(57,'PE0052','43543','545345','45477693',1),(58,'PE0053','Marlon','Cordova Torres','45477693',1),(59,'PE0054','Marlon','Cordova Torres','45477693',1),(60,'PE0055','Marlon','Cordova Torres','45477693',1),(61,'PE0056','Marlon','Cordova Torres','45477693',1),(62,'PE0057','Marlon','Cordova Torres','45477693',1),(63,'PE0058','Marlon','Cordova Torres','45477693',1),(64,'PE0059','Marlon','Cordova Torres','45477693',1),(65,'PE0060','Marlon','Cordova Torres','45477693',1),(66,'PE0061','Marlon','Cordova Torres','45477693',1),(67,'PE0062','Marlon','Cordova Torres','45477693',1),(68,'PE0063','Marlon','Cordova Torres','45477693',1),(69,'PE0064','Marlon','Cordova Torres','45477693',1),(70,'PE0065','Marlon','Cordova Torres','45477693',1),(71,'PE0066','Marlon','Cordova Torres','45477693',1),(72,'PE0067','Marlon','Cordova Torres','45477693',1),(73,'PE0068','Marlon','Cordova Torres','45477693',1),(74,'PE0069','marlon','cordova','45477693',1);
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +142,6 @@ CREATE TABLE `queja` (
 
 LOCK TABLES `queja` WRITE;
 /*!40000 ALTER TABLE `queja` DISABLE KEYS */;
-INSERT INTO `queja` VALUES (30,'2017-0006'),(32,'2017-0007');
 /*!40000 ALTER TABLE `queja` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +166,7 @@ CREATE TABLE `reclamo` (
 
 LOCK TABLES `reclamo` WRITE;
 /*!40000 ALTER TABLE `reclamo` DISABLE KEYS */;
-INSERT INTO `reclamo` VALUES (12,'2017-0002',''),(15,'2017-0003',''),(16,'2017-0004',''),(17,'2017-0005',''),(18,'2017-0006',''),(19,'2017-0007',''),(21,'2017-0008',''),(22,'2017-0009',''),(23,'2017-0010',''),(24,'2017-0011',''),(25,'2017-0012',''),(26,'2017-0013',''),(28,'2017-0014',''),(29,'2017-0015',''),(31,'2017-0016',''),(33,'2017-0017',''),(34,'2017-0018','');
+INSERT INTO `reclamo` VALUES (12,'2017-0002',''),(15,'2017-0003',''),(16,'2017-0004',''),(17,'2017-0005',''),(18,'2017-0006',''),(19,'2017-0007',''),(21,'2017-0008',''),(22,'2017-0009',''),(23,'2017-0010',''),(24,'2017-0011',''),(25,'2017-0012',''),(26,'2017-0013',''),(28,'2017-0014',''),(29,'2017-0015',''),(31,'2017-0016',''),(33,'2017-0017',''),(34,'2017-0018',''),(35,'2017-0019',''),(36,'2017-0020',''),(37,'2017-0021',''),(38,'2017-0022',''),(39,'2017-0023',''),(40,'2017-000024',''),(41,'2017-000025',''),(42,'2017-000026',''),(43,'2017-000027',''),(44,'2017-000028',''),(45,'2017-000029',''),(46,'2017-000030',''),(47,'2017-000031',''),(48,'2017-000032',''),(49,'2017-000033',''),(50,'2017-000034',''),(51,'2017-000035',''),(52,'2017-000036',''),(53,'2017-000037',''),(54,'2017-000038',''),(55,'2017-000039',''),(56,'2017-000040',''),(58,'2017-000041',''),(59,'2017-000042',''),(60,'2017-000043',''),(61,'2017-000044',''),(62,'2017-000045',''),(63,'2017-000046',''),(64,'2017-000047',''),(65,'2017-000048',''),(66,'2017-000049',''),(67,'2017-000050','');
 /*!40000 ALTER TABLE `reclamo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,7 +193,7 @@ CREATE TABLE `solicitante` (
 
 LOCK TABLES `solicitante` WRITE;
 /*!40000 ALTER TABLE `solicitante` DISABLE KEYS */;
-INSERT INTO `solicitante` VALUES (19,'96773435','marloncordova@outlook.com','Av Avenida 124',1),(20,'96773435','marloncordova@outlook.com','Av Avenida 124',1),(21,'96773435','marloncordova@outlook.com','Av Avenida 124',1),(22,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(23,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(24,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(25,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(26,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(27,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(28,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(29,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(30,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(31,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(32,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(33,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(34,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(35,'96773435','marloncordova@outlook.com','hjhjhjghhj',1),(36,'96773435','marloncordova@outlook.com','av',1),(37,'96773435','marloncordova@outlook.com','av',1),(38,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(39,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(40,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(41,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1);
+INSERT INTO `solicitante` VALUES (19,'96773435','marloncordova@outlook.com','Av Avenida 124',1),(20,'96773435','marloncordova@outlook.com','Av Avenida 124',1),(21,'96773435','marloncordova@outlook.com','Av Avenida 124',1),(22,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(23,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(24,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(25,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(26,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(27,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(28,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(29,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(30,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(31,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(32,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(33,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(34,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(35,'96773435','marloncordova@outlook.com','hjhjhjghhj',1),(36,'96773435','marloncordova@outlook.com','av',1),(37,'96773435','marloncordova@outlook.com','av',1),(38,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(39,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(40,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(41,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(42,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(43,'55454456456453','marloncordova@outlook.com','76u67u67',1),(44,'96773435','marloncordova@outlook.com','7j7uj7j7',1),(45,'344234','marloncordova@outlook.com','reewrwer',1),(46,'967734361','marloncordova@outlook.com','de',1),(47,'96773435','marloncordova@outlook.com','demnooo',1),(48,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(49,'967734364','marloncordova@outlook.com','87j8k89k',1),(50,'967734364','marloncordova@outlook.com','htyhytht',1),(51,'967734364','marloncordova@outlook.com','Afrgvrtgtr',1),(52,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(53,'96773435','marloncordova@outlook.com','rgferg',1),(54,'96773435','marloncordova@outlook.com','kjjkojjjk',1),(55,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(56,'96773435','marloncordova@outlook.com','tgrth',1),(57,'4354353','marloncordova@outlook.com','43435345',1),(58,'96773435','marloncordova@outlook.com','qweqwe',1),(59,'96773435','marloncordova@outlook.com','t4rggtrgt',1),(60,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(61,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(62,'96773435','marloncordova@outlook.com','iooo',1),(63,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(64,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(65,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(66,'96773435','marloncordova@outlook.com','yuyuuy',1),(67,'96773435','marloncordova@outlook.com','yuyuyyuy',1),(68,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(69,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(70,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(71,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(72,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(73,'96773435','marloncordova@outlook.com','Sector 2, Grupo 24,Mz F, Lote 12',1),(74,'4554567878785','marloncordova@outlook.com','IUUIHIU',1);
 /*!40000 ALTER TABLE `solicitante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,13 +209,14 @@ CREATE TABLE `solicitudqr` (
   `fechaCreacion` datetime NOT NULL,
   `descripcion` varchar(500) NOT NULL,
   `fechaLimite` datetime DEFAULT NULL,
-  `imagen` varchar(500) DEFAULT NULL,
+  `file` varchar(500) DEFAULT NULL,
   `idMotivoQR` int(11) DEFAULT NULL,
   `idTipoSolicitud` int(11) NOT NULL,
   `idPersona` int(11) NOT NULL,
   `estado` int(11) DEFAULT NULL,
+  `notificacion` int(11) DEFAULT NULL,
   PRIMARY KEY (`idSolicitudQR`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +225,7 @@ CREATE TABLE `solicitudqr` (
 
 LOCK TABLES `solicitudqr` WRITE;
 /*!40000 ALTER TABLE `solicitudqr` DISABLE KEYS */;
-INSERT INTO `solicitudqr` VALUES (28,'2017-12-05 18:17:33','jjkjkjk','2018-01-04 18:17:33','',1,1,35,1),(29,'2017-12-05 19:29:41','dfsdd','2018-01-04 19:29:41','',1,1,36,1),(30,'2017-12-05 19:30:02','dfsdd','2018-01-04 19:30:02','',1,2,37,1),(31,'2017-12-05 19:38:32','VCVCVCV','2018-01-04 19:38:32','',1,1,38,1),(32,'2017-12-05 19:38:41','VCVCVCV','2018-01-04 19:38:41','',1,2,39,1),(33,'2017-12-05 19:40:29','VCVCVCV','2018-01-04 19:40:29','',1,1,40,1),(34,'2017-12-05 19:54:37','DMSSSSS','2018-01-04 19:54:37','',1,1,41,1);
+INSERT INTO `solicitudqr` VALUES (66,'2017-12-07 13:11:16','popppo','2018-01-06 13:11:16','',0,1,73,1,1),(67,'2017-12-07 14:23:54','RETERETER','2018-01-06 14:23:54','',0,1,74,1,1);
 /*!40000 ALTER TABLE `solicitudqr` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +251,7 @@ CREATE TABLE `tipodocumento` (
 
 LOCK TABLES `tipodocumento` WRITE;
 /*!40000 ALTER TABLE `tipodocumento` DISABLE KEYS */;
-INSERT INTO `tipodocumento` VALUES (1,'TP0001','DNI',1),(2,'TP0002','Carne de extranjeria',1),(3,'TP0003','Pasaporte',1);
+INSERT INTO `tipodocumento` VALUES (1,'TP0001','DNI',1),(2,'TP0002','Carné de extranjería',1),(3,'TP0003','Pasaporte',1);
 /*!40000 ALTER TABLE `tipodocumento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -356,4 +357,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-05 21:06:22
+-- Dump completed on 2017-12-07 14:46:16
