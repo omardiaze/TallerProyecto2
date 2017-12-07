@@ -35,6 +35,15 @@ public class SolicitudInput {
     
     private int notificacion;
     
+    private String numeroDocumentoError;
+    private String nombreError;
+    private String apellidoError;
+    private String direccionError;
+    private String telefonoError;
+    private String correoError;
+    private String descripcionError;
+    
+    
     /**
      * @return the nombre
      */
@@ -240,14 +249,21 @@ public class SolicitudInput {
         idTipoDocumento=1;
         numeroDocumento="";
     
-    //solicitud   
-    
+        //solicitud
         id=0;
         numero="";
         descripcion="";
         idMotivo=0;
         idTipoSolicitud=0;
         notificacion=0;
+        
+        numeroDocumentoError="";
+        nombreError="";
+        apellidoError="";
+        direccionError="";
+        telefonoError="";
+        correoError="";
+        descripcionError="";
     }
 
     /**
@@ -262,6 +278,104 @@ public class SolicitudInput {
      */
     public void setNotificacion(int notificacion) {
         this.notificacion = notificacion;
+    }
+
+    /**
+     * @return the numeroDocumentoError
+     */
+    public String getNumeroDocumentoError() {
+        return numeroDocumentoError;
+    }
+
+    /**
+     * @param numeroDocumentoError the numeroDocumentoError to set
+     */
+    public void setNumeroDocumentoError(String numeroDocumentoError) {
+        this.numeroDocumentoError = numeroDocumentoError;
+    }
+
+    /**
+     * @return the nombreError
+     */
+    public String getNombreError() {
+        return nombreError;
+    }
+
+    /**
+     * @param nombreError the nombreError to set
+     */
+    public void setNombreError(String nombreError) {
+        this.nombreError = nombreError;
+    }
+
+    /**
+     * @return the apellidoError
+     */
+    public String getApellidoError() {
+        return apellidoError;
+    }
+
+    /**
+     * @param apellidoError the apellidoError to set
+     */
+    public void setApellidoError(String apellidoError) {
+        this.apellidoError = apellidoError;
+    }
+
+    /**
+     * @return the direccionError
+     */
+    public String getDireccionError() {
+        return direccionError;
+    }
+
+    /**
+     * @param direccionError the direccionError to set
+     */
+    public void setDireccionError(String direccionError) {
+        this.direccionError = direccionError;
+    }
+
+    /**
+     * @return the telefonoError
+     */
+    public String getTelefonoError() {
+        return telefonoError;
+    }
+
+    /**
+     * @param telefonoError the telefonoError to set
+     */
+    public void setTelefonoError(String telefonoError) {
+        this.telefonoError = telefonoError;
+    }
+
+    /**
+     * @return the correoError
+     */
+    public String getCorreoError() {
+        return correoError;
+    }
+
+    /**
+     * @param correoError the correoError to set
+     */
+    public void setCorreoError(String correoError) {
+        this.correoError = correoError;
+    }
+
+    /**
+     * @return the descripcionError
+     */
+    public String getDescripcionError() {
+        return descripcionError;
+    }
+
+    /**
+     * @param descripcionError the descripcionError to set
+     */
+    public void setDescripcionError(String descripcionError) {
+        this.descripcionError = descripcionError;
     }
     
     

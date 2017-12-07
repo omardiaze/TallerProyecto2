@@ -76,19 +76,23 @@ public class SolicitudService {
                 error+="<li>Debe seleccionar un tipo de documento.</li>";
             }
             if(input.getNumeroDocumento().trim().isEmpty()){
+                input.setNumeroDocumentoError("Debe ingresar su número de documento válido.");
                 error+="<li>Debe ingresar su número de documento válido.</li>";
             }else{
                 switch (input.getIdTipoDocumento()) {
                     case 1:
                         if(input.getNumeroDocumento().trim().length()!=8){
+                            input.setNumeroDocumentoError("Su Dni debe tener 8 números.");
                             error+="<li>Su Dni debe tener 8 números.</li>";
                         }   break;
                     case 2:
                         if(input.getNumeroDocumento().trim().length()!=12){
+                            input.setNumeroDocumentoError("Su Carné de Extranjería debe tener 12 números.");
                             error+="<li>Su Carné de Extranjería debe tener 12 números.</li>";
                         }   break;
                     case 3:
                         if(input.getNumeroDocumento().trim().length()!=12){
+                            input.setNumeroDocumentoError("Su Pasaporte debe tener 12 números.");
                             error+="<li>Su Pasaporte debe tener 12 números.</li>";
                         }   break;
                     default:
@@ -97,26 +101,32 @@ public class SolicitudService {
             }
             
             if(input.getNombre().trim().isEmpty()){
+                input.setNombreError("Debe ingresar su nombre.");
                 error+="<li>Debe ingresar su nombre.</li>";
             }
             
             if(input.getApellido().trim().isEmpty()){
+                input.setApellidoError("Debe ingresar sus apellidos.");
                 error+="<li>Debe ingresar sus apellidos.</li>";
             }
                         
             if(input.getTelefono().trim().isEmpty()){
+                input.setTelefonoError("Debe ingresar su teléfono.");
                 error+="<li>Debe ingresar su teléfono.</li>";
             }
                         
             if(input.getCorreo().trim().isEmpty()){
+                input.setCorreoError("Debe ingresar su correo.");
                 error+="<li>Debe ingresar su correo.</li>";
             }else{
                if(!emailValidator.validate(input.getCorreo())){
-                   error+="<li>Debe ingresar un correo válido. Ejemplo: usuario@outlook.com</li>";
+                   input.setCorreoError("Debe ingresar un correo válido. Ejemplo: usuario@outlook.com.");
+                   error+="<li>Debe ingresar un correo válido. Ejemplo: usuario@outlook.com.</li>";
                }
             }
             
             if(input.getDireccion().trim().isEmpty()){
+                input.setDireccionError("Debe ingresar su dirección.");
                 error+="<li>Debe ingresar su dirección.</li>";
             }
             
@@ -124,11 +134,12 @@ public class SolicitudService {
                 error+="<li>Debe seleccionar un tipo de solicitud válido.</li>";
             }
             
-            if(input.getIdTipoSolicitud()==0){
+            /*if(input.getIdTipoSolicitud()==0){
                 error+="<li>Debe seleccionar un motivo válido.</li>";
-            }
+            }*/
             
             if(input.getDescripcion().trim().isEmpty()){
+                input.setDescripcionError("Debe ingresar su descripción.");
                 error+="<li>Debe ingresar su descripción.</li>";
             }            
         }        

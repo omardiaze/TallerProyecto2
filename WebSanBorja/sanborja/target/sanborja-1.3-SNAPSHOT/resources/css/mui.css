@@ -1955,13 +1955,21 @@ h4, h5, h6 {
   top: 0;
   display: block;
   width: 100%;
-  color: rgba(0, 0, 0, 0.54);
+  /*color: rgba(0, 0, 0, 0.54);*/
   font-size: 12px;
   font-weight: 400;
   line-height: 15px;
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.color-label-ok{
+  color: rgba(0, 0, 0, 0.54);  
+}
+
+.color-label-error{
+   color: #F44336;
 }
 
 .mui-textfield > textarea {
@@ -2026,8 +2034,8 @@ h4, h5, h6 {
   display: block;
   background-color: transparent;
   color: rgba(0, 0, 0, 0.87);
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+ /* border: none;*/
+  /*border-bottom: 1px solid rgba(0, 0, 0, 0.26);*/
   outline: none;
   width: 100%;
   padding: 0;
@@ -2038,6 +2046,16 @@ h4, h5, h6 {
   font-family: inherit;
   line-height: inherit;
   background-image: none;
+}
+
+.border-color-text-ok{
+  border:none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+}
+
+.border-color-text-error{
+  border:none;
+  border-bottom: 1px solid #F44336;
 }
 
 .mui-textfield > input:focus,

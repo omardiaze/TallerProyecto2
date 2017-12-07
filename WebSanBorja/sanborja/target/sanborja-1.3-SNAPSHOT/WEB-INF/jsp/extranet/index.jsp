@@ -74,13 +74,13 @@
                                         <form:select path="idTipoDocumento" id="cboEstado" >
                                             <form:options items="${tipodocumentos}" itemValue="id" itemLabel="nombre" />
                                         </form:select>
-                                        <label>*Seleccione Tipo de documento</label>
+                                        <label>* Seleccione Tipo de documento</label>
                                     </div>       
                                 </div>
                                 <div class="mui-col-md-6 mui-col-xs-12">
-                                    <div class="mui-textfield div-error">
-                                        <form:input type="text" id="txtNumeroDocumento" maxlength="12"  onkeypress='validate(event)' class="mui-textfield mui-textfield--float-label  div-error" path="numeroDocumento"  />
-                                        <label id="lblNumeroDocumento" for="txtNumeroDocumento" >* Ingrese Nro de documento</label>
+                                    <div class="mui-textfield">
+                                        <form:input type="text" id="txtNumeroDocumento" maxlength="12" placeholder="${solicitud.numeroDocumentoError}" onkeypress='validate(event)' class="mui-textfield mui-textfield--float-label ${not empty solicitud.numeroDocumentoError ? 'border-color-text-error' : 'border-color-text-ok'}" path="numeroDocumento"  />
+                                        <label id="lblNumeroDocumento" for="txtNumeroDocumento" class="${not empty solicitud.numeroDocumentoError ? 'color-label-error' : 'color-label-ok'}">* Ingrese Nro de documento</label>
                                     </div>       
                                 </div>
                             </div>
@@ -88,14 +88,14 @@
                             <div class="row">
                                 <div class="mui-col-md-6 mui-col-xs-12">
                                     <div class="mui-textfield">
-                                        <form:input type="text" id="txtNombre" class="mui-textfield mui-textfield--float-label" path="nombre" />
-                                        <label id="lblName" for="txtName">* Ingrese su nombre:</label>
+                                        <form:input type="text" id="txtNombre" placeholder="${solicitud.nombreError}" class="mui-textfield mui-textfield--float-label border-color-text-ok ${not empty solicitud.nombreError ? 'border-color-text-error' : 'border-color-text-ok'}" path="nombre" />
+                                        <label id="lblName" for="txtName" class="${not empty solicitud.nombreError ? 'color-label-error' : 'color-label-ok'}">* Ingrese su nombre</label>
                                     </div>       
                                 </div>
                                 <div class="mui-col-md-6 mui-col-xs-12">
                                     <div class="mui-textfield">
-                                        <form:input type="text" id="txtApellido" class="mui-textfield mui-textfield--float-label" path="apellido" />
-                                        <label for="txtApellido">* Ingrese sus apellidos:</label>
+                                        <form:input type="text" id="txtApellido" placeholder="${solicitud.apellidoError}" class="mui-textfield mui-textfield--float-label ${not empty solicitud.apellidoError ? 'border-color-text-error' : 'border-color-text-ok'}" path="apellido" />
+                                        <label for="txtApellido" class="${not empty solicitud.apellidoError ? 'color-label-error' : 'color-label-ok'}">* Ingrese sus apellidos</label>
                                     </div>       
                                 </div>
                             </div>
@@ -103,23 +103,23 @@
                             <div class="row">
                                 <div class="mui-col-md-6 mui-col-xs-12">
                                     <div class="mui-textfield">
-                                        <form:input type="number" id="txtTelefono" class="mui-textfield mui-textfield--float-label" path="telefono" />
-                                        <label id="lblTelefono" for="txtTelefono">* Ingrese su teléfono:</label>
+                                        <form:input type="number" id="txtTelefono" placeholder="${solicitud.telefonoError}" class="mui-textfield mui-textfield--float-label ${not empty solicitud.telefonoError ? 'border-color-text-error' : 'border-color-text-ok'}" path="telefono" />
+                                        <label id="lblTelefono" for="txtTelefono" class="${not empty solicitud.telefonoError ? 'color-label-error' : 'color-label-ok'}">* Ingrese su teléfono</label>
                                     </div>       
                                 </div>
                                 <div class="mui-col-md-6 mui-col-xs-12">
                                     <div class="mui-textfield">
-                                        <form:input type="text" id="txtCorreo" class="mui-textfield mui-textfield--float-label" path="correo" />
-                                        <label id="lblCorreo" for="txtCorreo">* Ingrese su correo</label>
-                                    </div>       
+                                        <form:input type="text" id="txtCorreo"  placeholder="${solicitud.telefonoError}"  class="mui-textfield mui-textfield--float-label ${not empty solicitud.correoError ? 'border-color-text-error' : 'border-color-text-ok'}" path="correo" />
+                                        <label id="lblCorreo" for="txtCorreo" class="${not empty solicitud.correoError ? 'color-label-error' : 'color-label-ok'}">* Ingrese su correo </label>
+                                    </div>                                      
                                 </div>
                             </div>
                                         
                              <div class="row">
                                 <div class="mui-col-md-12 mui-col-xs-12">
                                     <div class="mui-textfield">
-                                        <form:textarea path="direccion" id="txtDireccion"  rows="1" cols="30" />                                        
-                                        <label id="lblDireccion" for="txtDireccion">* Ingrese su dirección</label>
+                                        <form:textarea path="direccion" id="txtDireccion" placeholder="${solicitud.direccionError}" class="${not empty solicitud.direccionError ? 'border-color-text-error' : 'border-color-text-ok'}" rows="1" cols="30" />                                        
+                                        <label id="lblDireccion" for="txtDireccion" class="${not empty solicitud.direccionError ? 'color-label-error' : 'color-label-ok'}">* Ingrese su dirección</label>
                                     </div>       
                              </div>
                                 
@@ -135,7 +135,7 @@
                              <div class="row">
                                 <div class="mui-col-md-12 mui-col-xs-12">
                                     <div class="mui-textfield">
-                                       <label id="lblDocumento">¿Que desea registrar?</label>
+                                       <label id="lblDocumento">¿Qué desea registrar?</label>
                                         <div style="padding-bottom: 0px">
                                             <div style="float: left">
                                                 <div class="mui-radio">
@@ -174,8 +174,8 @@
                             <div class="row">
                                 <div class="mui-col-md-12 mui-col-xs-12">
                                     <div class="mui-textfield">
-                                        <form:textarea path="descripcion" id="txtDescripcion"  rows="1" cols="30" />                                        
-                                        <label id="lblDescripcion" for="txtDescripcion">* Ingrese su descripción</label>
+                                        <form:textarea path="descripcion" placeholder="${solicitud.descripcionError}" class="${not empty solicitud.descripcionError ? 'border-color-text-error' : 'border-color-text-ok'}" id="txtDescripcion"  rows="1" cols="30" />                                        
+                                        <label id="lblDescripcion" for="txtDescripcion" class="${not empty solicitud.descripcionError ? 'color-label-error' : 'color-label-ok'}">* Ingrese su descripción</label>
                                     </div>       
                                 </div> 
                             </div> 
@@ -260,6 +260,9 @@
         </c:if>
 
     $(document).ready(function() {
+        <c:if test="${not empty ok}">
+                
+        </c:if>
         var idTipoSolicitud=0;
 
         $('input[type=radio][id=idTipoSolicitud]').change(function() {
