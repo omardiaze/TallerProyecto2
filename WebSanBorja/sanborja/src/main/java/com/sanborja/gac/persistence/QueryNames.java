@@ -16,7 +16,8 @@ public class QueryNames {
     public static String TipoDocumentoQuery="select idTipoDocumento as id,codigo, nombre, ufnDevolverEstado(1001,estado) as estado from tipodocumento";
     
     public static String MotivoQuery="select idMotivoQR as id,codigo, nombre, ufnDevolverEstado(1002,estado) as estado from motivoqr";
-        
+    public static String MotivoQueryFindById="select idMotivoQR as id,codigo, nombre, ufnDevolverEstado(1002,estado) as estado from motivoqr where idTipoSolicitud=:id";
+    
     public static String SolicitudQuery="SELECT " +
                     "sol.idSolicitudQR as id," +
                     "(case sol.idTipoSolicitud " +
@@ -30,7 +31,7 @@ public class QueryNames {
                     "mot.nombre as motivo," +
                     "concat(per.nombre,' ', per.apellido) as solicitante," +
                     "ufnDevolverEstado(2000,sol.estado) as estado," +
-                    "sol.imagen " +
+                    "sol.file " +
                     "FROM solicitudqr sol " +
                     "inner join tiposolicitud tip " +
                     "on sol.idTipoSolicitud = tip.idTipoSolicitud " +
@@ -38,7 +39,7 @@ public class QueryNames {
                     "on sol.idSolicitudQR = que.idSolicitudQR " +
                     "left outer join reclamo rec " +
                     "on sol.idSolicitudQR = rec.idSolicitudQR " +
-                    "inner join motivoqr mot " +
+                    "left outer join motivoqr mot " +
                     "on sol.idMotivoQR = mot.idMotivoQR " +
                     "inner join persona per " +
                     "on sol.idPersona =  per.idPersona ";
@@ -56,7 +57,7 @@ public class QueryNames {
                     "mot.nombre as motivo," +
                     "concat(per.nombre,' ', per.apellido) as solicitante," +
                     "ufnDevolverEstado(2000,sol.estado) as estado," +
-                    "sol.imagen, " +             
+                    "sol.file, " +             
                     "td.nombre as tipoDocumento,"+
                     "per.numeroDocumento,"+
                     "soli.correo,"+
@@ -70,7 +71,7 @@ public class QueryNames {
                     "on sol.idSolicitudQR = que.idSolicitudQR " +
                     "left outer join reclamo rec " +
                     "on sol.idSolicitudQR = rec.idSolicitudQR " +
-                    "inner join motivoqr mot " +
+                    "left outer join motivoqr mot " +
                     "on sol.idMotivoQR = mot.idMotivoQR " +
                     "inner join persona per " +
                     "on sol.idPersona =  per.idPersona "+

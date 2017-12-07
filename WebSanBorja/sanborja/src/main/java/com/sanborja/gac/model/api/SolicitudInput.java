@@ -31,7 +31,10 @@ public class SolicitudInput {
     private int idMotivo;
     private int idTipoSolicitud;
     private MultipartFile file;
-
+    private String fileName;
+    
+    private int notificacion;
+    
     /**
      * @return the nombre
      */
@@ -172,6 +175,20 @@ public class SolicitudInput {
         this.descripcion = descripcion;
     }
 
+     /**
+     * @return the descripcion
+     */
+    public String getFileName() {
+        return fileName;
+    }
+
+    /**
+     * @param descripcion the descripcion to set
+     */
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+    
     /**
      * @return the idMotivo
      */
@@ -230,6 +247,21 @@ public class SolicitudInput {
         descripcion="";
         idMotivo=0;
         idTipoSolicitud=0;
+        notificacion=0;
+    }
+
+    /**
+     * @return the notificacion
+     */
+    public int getNotificacion() {
+        return notificacion;
+    }
+
+    /**
+     * @param notificacion the notificacion to set
+     */
+    public void setNotificacion(int notificacion) {
+        this.notificacion = notificacion;
     }
     
     

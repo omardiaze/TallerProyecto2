@@ -42,4 +42,26 @@ public class MotivoService {
         data.setData(list);
         return data;
     }
+    
+    public Data<MotivoQuery> query(int id) {
+        Data <MotivoQuery> data = new Data<MotivoQuery>();
+        List<MotivoQuery> list;
+        list = motivoRepository.query(id);
+
+        if(list!=null) {
+            if(!list.isEmpty()) {
+                data.getData();
+                data.setApistatus(Status.Ok);
+            }else{
+                    data.setApistatus(Status.Error);
+                    data.setApimessage("No hay datos");
+            }
+        }else{
+                data.setApistatus(Status.Error);
+                data.setApimessage("No hay datos");
+        }
+
+        data.setData(list);
+        return data;
+    }
 }

@@ -38,8 +38,8 @@ public class Solicitud extends Base implements Serializable{
     @Column(name="fechaLimite")    
     private Timestamp fechaLimite;
     
-    @Column(name = "imagen")
-    private String imagen;
+    @Column(name = "file")
+    private String file;
     
     @Column(name = "idMotivoQR")
     private Integer idMotivoQR;
@@ -49,6 +49,10 @@ public class Solicitud extends Base implements Serializable{
             
     @Column(name = "idPersona")
     private Integer idPersona;
+
+    @Column(name = "notificacion")
+    private Integer notificacion;
+
     
     @Transient
     private Solicitante solicitante; 
@@ -116,15 +120,15 @@ public class Solicitud extends Base implements Serializable{
     /**
      * @return the imagen
      */
-    public String getImagen() {
-        return imagen;
+    public String getFile() {
+        return file;
     }
 
     /**
      * @param imagen the imagen to set
      */
-    public Solicitud setImagen(String imagen) {
-        this.imagen = imagen;
+    public Solicitud setFile(String file) {
+        this.file = file;
         return this;
     }
 
@@ -186,6 +190,21 @@ public class Solicitud extends Base implements Serializable{
      */
     public Solicitud setSolicitante(Solicitante solicitante) {
         this.solicitante = solicitante;
+        return this;
+    }
+
+    /**
+     * @return the notificacion
+     */
+    public Integer getNotificacion() {
+        return notificacion;
+    }
+
+    /**
+     * @param notificacion the notificacion to set
+     */
+    public Solicitud setNotificacion(Integer notificacion) {
+        this.notificacion = notificacion;
         return this;
     }
     

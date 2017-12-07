@@ -66,9 +66,8 @@ public class SolicitudService {
     
      public CheckStatus create(SolicitudInput input) {
         CheckStatus checkStatus= new CheckStatus();
- 	
-
         String error="";
+        
         if(input==null){
             error+="ingresar el tipo de la solicitud";
         }else{
@@ -77,12 +76,23 @@ public class SolicitudService {
                 error+="<li>Debe seleccionar un tipo de documento.</li>";
             }
             if(input.getNumeroDocumento().trim().isEmpty()){
-                error+="<li>Debe ingresar su número de documento valido.</li>";
+                error+="<li>Debe ingresar su número de documento válido.</li>";
             }else{
-                if(input.getIdTipoDocumento()==1){
-                    if(input.getNumeroDocumento().trim().length()!=8){
-                        error+="<li>Debe ingresar el dni de 8 números.</li>";
-                    }
+                switch (input.getIdTipoDocumento()) {
+                    case 1:
+                        if(input.getNumeroDocumento().trim().length()!=8){
+                            error+="<li>Su Dni debe tener 8 números.</li>";
+                        }   break;
+                    case 2:
+                        if(input.getNumeroDocumento().trim().length()!=12){
+                            error+="<li>Su Carné de Extranjería debe tener 12 números.</li>";
+                        }   break;
+                    case 3:
+                        if(input.getNumeroDocumento().trim().length()!=12){
+                            error+="<li>Su Pasaporte debe tener 12 números.</li>";
+                        }   break;
+                    default:
+                        break;
                 }
             }
             
@@ -102,7 +112,7 @@ public class SolicitudService {
                 error+="<li>Debe ingresar su correo.</li>";
             }else{
                if(!emailValidator.validate(input.getCorreo())){
-                   error+="<li>Debe ingresar un correo valido. Ejemplo: usuario@outlook.com</li>";
+                   error+="<li>Debe ingresar un correo válido. Ejemplo: usuario@outlook.com</li>";
                }
             }
             
@@ -111,11 +121,11 @@ public class SolicitudService {
             }
             
             if(input.getIdTipoSolicitud()==0){
-                error+="<li>Debe seleccionar un tipo de solicitud valido.</li>";
+                error+="<li>Debe seleccionar un tipo de solicitud válido.</li>";
             }
             
             if(input.getIdTipoSolicitud()==0){
-                error+="<li>Debe seleccionar un motivo valido.</li>";
+                error+="<li>Debe seleccionar un motivo válido.</li>";
             }
             
             if(input.getDescripcion().trim().isEmpty()){
@@ -145,18 +155,20 @@ public class SolicitudService {
             solicitud.setIdSolicitudQR(0).
                     setIdTipoSolicitud(input.getIdTipoSolicitud()).
                     setIdMotivoQR(input.getIdMotivo()).
-                    setDescripcion(input.getDescripcion()).
-                    setImagen("").
-                    setSolicitante(solicitante).
-                    setEstado(1);
-
+                    setDescripcion(input.getDescripcion()).                    
+                    setSolicitante(solicitante).setFile(input.getFileName()).
+                    setNotificacion(input.getNotificacion()).setEstado(1);
+            
+            if(solicitud.getIdMotivoQR()==0){
+                solicitud.setIdMotivoQR(0);
+            }
 
             checkStatus = solicitudRepository.create(solicitud);
-                
+            String cPersona=input.getNombre() + " "+input.getApellido();
             //enviar correo
             try {
                 SendMailService mailService= new SendMailService();
-                mailService.Send(input.getCorreo());
+                mailService.Send(input.getCorreo(),(input.getIdTipoSolicitud()==1?"reclamo":"queja"),checkStatus.getCodigo(), cPersona,checkStatus.getId());
             } catch (IOException ex) {
                 Logger.getLogger(SolicitudService.class.getName()).log(Level.SEVERE, null, ex);
             } catch (MessagingException ex) {

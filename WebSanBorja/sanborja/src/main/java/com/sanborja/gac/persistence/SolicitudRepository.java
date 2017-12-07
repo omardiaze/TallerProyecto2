@@ -66,6 +66,17 @@ public class SolicitudRepository {
                     fechaCreacion = (java.util.Date)row[5];		      
                 }	
                         
+                int idMotivo=0;
+                String motivo="Ninguno";
+                if(row[6]!=null){
+                  idMotivo = Integer.parseInt(row[6].toString());  
+                }
+                
+                if(row[7]!=null){
+                    motivo = row[7].toString();
+                }
+                
+                
                 tipoSolicitud.
                         setId(Integer.parseInt(row[0].toString())).
                         setNumero(row[1].toString()).					                            
@@ -73,8 +84,8 @@ public class SolicitudRepository {
                         setIdTipo(Integer.parseInt(row[3].toString())).
                         setFechaCreacion(fechaCreacion).
                         setFechaLimite(fechaLimite).
-                        setIdMotivo(Integer.parseInt(row[6].toString())).
-                        setMotivo(row[7].toString()).
+                        setIdMotivo(idMotivo).
+                        setMotivo(motivo).
                         setSolicitante(row[8].toString()).
                         setEstado(row[9].toString());
 
@@ -102,6 +113,15 @@ public class SolicitudRepository {
             solicitud = new SolicitudFindByIdOutput();
             
             try {
+                int idMotivo=0;
+                String motivo="Ninguno";
+                if(row[6]!=null){
+                  idMotivo = Integer.parseInt(row[6].toString());  
+                }
+                
+                if(row[7]!=null){
+                    motivo = row[7].toString();
+                }
                 
                 Date fechaCreacion = null;
                 if (row[4] instanceof Date) {
@@ -113,6 +133,11 @@ public class SolicitudRepository {
                     fechaLimite = (java.util.Date)row[5];		      
                 }	
                         
+                String file ="";
+                if(row[10]!=null){
+                    file = row[10].toString();
+                }
+                
                 solicitud.
                         setId(Integer.parseInt(row[0].toString())).
                         setNumero(row[1].toString()).					                            
@@ -120,10 +145,11 @@ public class SolicitudRepository {
                         setIdTipo(Integer.parseInt(row[3].toString())).
                         setFechaCreacion(fechaCreacion).
                         setFechaLimite(fechaLimite).
-                        setIdMotivo(Integer.parseInt(row[6].toString())).
-                        setMotivo(row[7].toString()).
+                        setIdMotivo(idMotivo).
+                        setMotivo(motivo).
                         setSolicitante(row[8].toString()).
                         setEstado(row[9].toString()).
+                        setFile(file).
                         setTipoDocumento(row[11].toString()).
                         setNumeroDocumento(row[12].toString()).
                         setCorreo(row[13].toString()).
@@ -175,6 +201,8 @@ public class SolicitudRepository {
         } catch (Exception ex) {
             Logger.getLogger(SolicitudRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
         session.getCurrentSession().save(solicitud);
                 
         String numero = "";
@@ -185,7 +213,7 @@ public class SolicitudRepository {
             entidad = Entity.Queja;
         }        
         numero =helperRepository.GenerateCode(entidad);	
-        numero="2017-"+numero;
+        numero="2017-00"+numero;
        
         if(solicitud.getIdTipoSolicitud()==1){
             //Reclamos

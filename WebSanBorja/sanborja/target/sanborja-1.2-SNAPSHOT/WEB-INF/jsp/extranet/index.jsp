@@ -12,56 +12,15 @@
 <!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Municipalidad de San Borja</title>
- 
-    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css" />
-    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     
-    <link href="<c:url value="/resources/css/mui.css"/>" rel="stylesheet" />
-    <link href="<c:url value="/resources/css/mui-colors.css"/>" rel="stylesheet" />   
-    <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
-    <link href="<c:url value="/resources/css/custom-file-input.css"/>" rel="stylesheet">
-    
-    <script src="<c:url value="/resources/js/mui.min.js"/>"></script>
-    <script src="<c:url value="/resources/js/jquery-3.2.1.min.js"/>"></script>
+      <%@include file="template/header.jsp" %>
 
   </head>
   <body>
-        <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#">Crear Queja o Reclamo</a>
-            <a href="#">Buscar Quejas y Reclamos</a>        
-        </div>
-      
-        <div class="mui-appbar mui--appbar-line-height" style="background-color: #39A0AA">
-            <div class="mui-container-fluid" style="background-color: #39A0AA">
-                <div style="width:100%">
-                    
-                    <div style="float:left">
-                        <div>
-                            <div style="float:left">
-                                <img src="<c:url value="/resources/images/logo.png"/>" height="80">
-                            </div>
-                            
-                            <div style="clear: both"> </div>
-                        </div>
-                    </div>
-
-                    <div style="float:right" class="mui--hidden-xs">
-                        <img src="<c:url value="/resources/images/logo2.png"/>" height="80">
-                    </div>
-                    <div style="float:right" class="mui--visible-xs-block">
-                        <span  style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>                                               
-                    </div>
-                    <div style="clear: both"> </div>
-                </div>
-            </div>
-        </div>
-      
-        
+     
+        <%@include file="template/sideNav.jsp" %>
+        <%@include file="template/menu.jsp" %>
+              
         <div id="content-wrapper">
           <!-- Content HTML goes here -->         
            
@@ -73,7 +32,7 @@
                         <h3 style="color: #39A0AA">Pedidos y Sugerencias</h3>
 
                         <ul>
-                            <li><a href="">Crear Queja o Reclamos </a></li>
+                            <li><a href="">Crear Queja o Reclamo</a></li>
                             <li><a href="">Buscar Quejas y Reclamos</a></li>
                         </ul>
                     </div>
@@ -115,7 +74,7 @@
                                         <form:select path="idTipoDocumento" id="cboEstado" >
                                             <form:options items="${tipodocumentos}" itemValue="id" itemLabel="nombre" />
                                         </form:select>
-                                         <label>Seleccione Tipo de documento</label>
+                                        <label style="color: red">*</label> <label>*Seleccione Tipo de documento</label>
                                     </div>       
                                 </div>
                                 <div class="mui-col-md-6 mui-col-xs-12">
@@ -201,7 +160,7 @@
                                 </div>                                 
                             </div>
                             
-                             <div class="row">
+                            <div class="row">
                                 <div class="mui-col-md-12 mui-col-xs-12">
                                     <div class="mui-select">
                                         <form:select path="idMotivo" id="cboMotivo" >
@@ -235,13 +194,10 @@
           </div>
          </div>
         
-        <footer>
-          <div class="mui-container mui--text-center">
-            Made with ♥ by <a href="https://www.muicss.com">MUICSS</a>
-          </div>
-        </footer>     
+        <%@include file="template/footer.jsp" %>
+        <%@include file="template/footerjs.jsp" %>
                 
-        <script src="<c:url value="/resources/js/custom-file-input.js"/>"></script>
+        
         <script>    
              <c:if test="${not empty ok}">
                    var $modalEl = "";

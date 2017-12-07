@@ -73,4 +73,14 @@ public class MotivoQuery {
         this.estado = estado;
         return this;
     }
+    
+    public MotivoQuery(){}
+    
+    public MotivoQuery(int id,String codigo, String nombre,String estado){
+        this.id=id;
+        this.codigo=codigo;
+        this.nombre = nombre;
+        this.estado= estado;
+    }
+    
 }

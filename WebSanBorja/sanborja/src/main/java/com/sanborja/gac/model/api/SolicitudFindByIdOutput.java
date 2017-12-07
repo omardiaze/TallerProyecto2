@@ -21,7 +21,7 @@ public class SolicitudFindByIdOutput extends Base{
     private Date fechaCreacion;
     private Date fechaLimite;
     private String descripcion;
-    
+    private String file;
     private String tipoDocumento;
     private String numeroDocumento;
     private String correo;
@@ -264,6 +264,21 @@ public class SolicitudFindByIdOutput extends Base{
      */
     public SolicitudFindByIdOutput setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        return this;
+    }
+
+    /**
+     * @return the file
+     */
+    public String getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public SolicitudFindByIdOutput setFile(String file) {
+        this.file = file;
         return this;
     }
 
