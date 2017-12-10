@@ -305,9 +305,12 @@
                     }
                     //alert(JSON.stringify(data));
                 },
-                error: function (data) {
-                    //alert(JSON.stringify(data));
-                } 
+                error : function(jqXHR, textStatus, errorThrown) { 
+                    if(jqXHR.status == 404 || errorThrown == 'Not Found') 
+                    { 
+                        console.log('No encontrado.'); 
+                    }
+                }
             });  
         }
     }

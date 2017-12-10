@@ -36,8 +36,8 @@ public class TipoDocumentoRestController {
     public ResponseEntity<TipoDocumentoApiIdOutput> findById(@PathVariable("tipo") Integer tipo,
                 @PathVariable("numero") String numero) {
         
-        System.out.print(tipo);
-        System.out.print(numero);
+        //System.out.print(tipo);
+        //System.out.print(numero);
         TipoDocumentoApiIdOutput data = new TipoDocumentoApiIdOutput();
         try{
             data= tipoDocumentoService.findById(tipo, numero);
@@ -47,6 +47,7 @@ public class TipoDocumentoRestController {
             Logger.getLogger(TipoDocumentoRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        System.out.print(data.getApistatus());
         if(data.getApistatus().equals(Status.Ok)) {
             return new ResponseEntity<TipoDocumentoApiIdOutput>(data, HttpStatus.OK);
         }else	 {

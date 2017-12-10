@@ -72,49 +72,53 @@ public class TipoDocumentoService {
         }else{
             //buscar dni
             boolean bExiste=false;
-            OkHttpClient client = new OkHttpClient();
-            RequestBody formBody = new FormBody.Builder()
-                   .add("ndni", numero)
+            
+            if(tipo==1){
+                OkHttpClient client = new OkHttpClient();
+                RequestBody formBody = new FormBody.Builder()
+                       .add("ndni", numero)
+                       .build();
+                Request request = new Request.Builder()
+                   .url("https://demos.geekdev.ml/reniec/consulta.php")
+                   .post(formBody)
                    .build();
-            Request request = new Request.Builder()
-               .url("https://demos.geekdev.ml/reniec/consulta.php")
-               .post(formBody)
-               .build();
 
-            try{
-                Response response = client.newCall(request).execute();
-                if (response.isSuccessful()){
-                    bExiste=true;
-                    System.out.println(response.body());
-                    String jsonData = response.body().string();
-                    JSONObject  Jobject = new JSONObject(jsonData);
-                    if(Jobject.get("success").toString().equals("true")){
-                        JSONObject Jpersona = Jobject.getJSONObject("result");
-                        
-                        String TempNombre =(Jpersona.getString("Nombre").toLowerCase());
-                        String Paterno=StringUtils.capitalize(Jpersona.getString("Paterno").toLowerCase());
-                        String Materno=StringUtils.capitalize(Jpersona.getString("Materno").toLowerCase());
-                        String Nombre=""; 
-                        
-                        String[] parts = TempNombre.split(" ");
-                        
-                        for(String nombres:parts){
-                            Nombre+=StringUtils.capitalize(nombres)+" ";
+                try{
+                    Response response = client.newCall(request).execute();
+                    if (response.isSuccessful()){
+                       
+                        System.out.println(response.body());
+                        String jsonData = response.body().string();
+                        JSONObject  Jobject = new JSONObject(jsonData);
+                        if(Jobject.get("success").toString().equals("true")){
+                            bExiste=true;
+                            JSONObject Jpersona = Jobject.getJSONObject("result");
+
+                            String TempNombre =(Jpersona.getString("Nombre").toLowerCase());
+                            String Paterno=StringUtils.capitalize(Jpersona.getString("Paterno").toLowerCase());
+                            String Materno=StringUtils.capitalize(Jpersona.getString("Materno").toLowerCase());
+                            String Nombre=""; 
+
+                            String[] parts = TempNombre.split(" ");
+
+                            for(String nombres:parts){
+                                Nombre+=StringUtils.capitalize(nombres)+" ";
+                            }
+
+                            documento = new TipoDocumentoApiIdOutput();
+                            documento.setNumero(Jpersona.getString("DNI"));
+                            documento.setNombre(Nombre.trim());
+                            documento.setApellidos(Paterno+ " "+Materno);
+
+                            documento.setApistatus(Status.Ok);
+
                         }
-                        
-                        documento = new TipoDocumentoApiIdOutput();
-                        documento.setNumero(Jpersona.getString("DNI"));
-                        documento.setNombre(Nombre.trim());
-                        documento.setApellidos(Paterno+ " "+Materno);
-                        
-                        documento.setApistatus(Status.Ok);
-                        
                     }
+                }catch (IOException ex){
+                    System.out.print(ex.getMessage());
                 }
-            }catch (IOException ex){
-                System.out.print(ex.getMessage());
             }
-
+            
             if(bExiste==false){
                 documento = new TipoDocumentoApiIdOutput();
                 documento.setApistatus(Status.Error);
