@@ -171,7 +171,7 @@ public class SolicitudService {
                     setNotificacion(input.getNotificacion()).setEstado(1);
             
             if(solicitud.getIdMotivoQR()==0){
-                solicitud.setIdMotivoQR(0);
+                solicitud.setIdMotivoQR(null);
             }
 
             checkStatus = solicitudRepository.create(solicitud);

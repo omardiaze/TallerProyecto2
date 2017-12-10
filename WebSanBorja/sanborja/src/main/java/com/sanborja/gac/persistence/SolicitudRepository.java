@@ -16,6 +16,7 @@ import com.sanborja.gac.model.api.Entity;
 import com.sanborja.gac.model.api.SolicitudFindByIdOutput;
 import com.sanborja.gac.model.api.SolicitudQuery;
 import com.sanborja.gac.model.api.Status;
+import com.sanborja.gac.model.api.TipoDocumentoApiIdOutput;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -42,6 +43,9 @@ public class SolicitudRepository {
 	
     @Autowired
     HelperRepository helperRepository;	
+    
+    @Autowired
+    TipoDocumentoRepository tipoDocumentoRepository;	
     
     @SuppressWarnings("unchecked")
     public List<SolicitudQuery> query() {
@@ -167,26 +171,52 @@ public class SolicitudRepository {
         return solicitud;
     } 
     
-    
-      public CheckStatus create(Solicitud solicitud) {		
+    public CheckStatus create(Solicitud solicitud) {		
         CheckStatus checkStatus=new CheckStatus();
         String entidad="";
         String codigo="";
         
-        //Persona
-        codigo =helperRepository.GenerateCode(Entity.Persona);	
-        Persona persona = new Persona();
-        persona= solicitud.getSolicitante().getPersona();
-        persona.setCodigo(codigo);
-        session.getCurrentSession().save(persona);
-        System.out.print(persona.getIdPersona());
-       
-        //Solicitante
-        Solicitante solicitante = new Solicitante();
-        solicitante= solicitud.getSolicitante();
-        solicitante.setIdPersona(persona.getIdPersona());        
-        session.getCurrentSession().save(solicitante);
+        //System.out.println(solicitud.getSolicitante().getPersona().getIdTipoDocumento());
+        //System.out.println(solicitud.getSolicitante().getPersona().getNumeroDocumento());
+        //buscar idPersona
+        int idPersona = 0;
+        TipoDocumentoApiIdOutput tipoDocumentoApi = tipoDocumentoRepository.findById(
+                    solicitud.getSolicitante().getPersona().getIdTipoDocumento(),
+                    solicitud.getSolicitante().getPersona().getNumeroDocumento());
         
+        Persona persona=new Persona();
+        Solicitante solicitante=new Solicitante();
+        
+        if(tipoDocumentoApi!=null){
+            idPersona= tipoDocumentoApi.getId();
+            //Persona
+             persona = (Persona) session.getCurrentSession().load(Persona.class,idPersona);
+            persona.setNombre(solicitud.getSolicitante().getPersona().getNombre());
+            persona.setApellido(solicitud.getSolicitante().getPersona().getApellido());
+            session.getCurrentSession().update(persona);
+            
+            
+            solicitante = (Solicitante) session.getCurrentSession().load(Solicitante.class,idPersona);
+            solicitante.setTelefono(solicitud.getSolicitante().getTelefono());
+            solicitante.setCorreo(solicitud.getSolicitante().getCorreo());
+            solicitante.setDireccion(solicitud.getSolicitante().getDireccion());
+            session.getCurrentSession().update(solicitante);
+            
+        }else{
+            
+            codigo =helperRepository.GenerateCode(Entity.Persona);	
+            
+            persona= solicitud.getSolicitante().getPersona();
+            persona.setCodigo(codigo);
+            session.getCurrentSession().save(persona);
+            System.out.print(persona.getIdPersona());
+
+            //Solicitante            
+            solicitante= solicitud.getSolicitante();
+            solicitante.setIdPersona(persona.getIdPersona());        
+            session.getCurrentSession().save(solicitante);            
+            
+        }
        
         //Solicitud
         solicitud.setIdPersona(persona.getIdPersona());

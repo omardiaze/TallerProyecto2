@@ -14,6 +14,20 @@ public class QueryNames {
     public static String TipoSolicitudFindById="select idTipoSolicitud as id,codigo, nombre,estado from tiposolicitud  where idTipoSolicitud=:id";   
    
     public static String TipoDocumentoQuery="select idTipoDocumento as id,codigo, nombre, ufnDevolverEstado(1001,estado) as estado from tipodocumento";
+    public static String TipoDocumentoApiFindById="select " +
+                "td.nombre as numero," +
+                "per.nombre," +
+                "per.apellido," +
+                "sol.telefono," +
+                "sol.correo," +
+                "sol.direccion,"+
+                "per.idPersona " +
+                "from persona per " +
+                "inner join tipodocumento td " +
+                "on per.idTipoDocumento=td.idTipoDocumento " +
+                "inner join solicitante sol " +
+                "on per.idPersona = sol.idPersona where per.idTipoDocumento=:tipo and per.numeroDocumento=:numero LIMIT 1";       
+    
     
     public static String MotivoQuery="select idMotivoQR as id,codigo, nombre, ufnDevolverEstado(1002,estado) as estado from motivoqr";
     public static String MotivoQueryFindById="select idMotivoQR as id,codigo, nombre, ufnDevolverEstado(1002,estado) as estado from motivoqr where idTipoSolicitud=:id";

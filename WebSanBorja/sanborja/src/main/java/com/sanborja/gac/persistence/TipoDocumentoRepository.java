@@ -5,7 +5,8 @@
  */
 package com.sanborja.gac.persistence;
 
-import com.sanborja.gac.model.api.TipoDocumentoQuery;
+import com.sanborja.gac.model.api.TipoDocumentoApiIdOutput;
+import com.sanborja.gac.model.api.TipoDocumentoQuery; 
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.SQLQuery;
@@ -53,4 +54,39 @@ public class TipoDocumentoRepository {
         }
         return list;
     }
+    
+     @SuppressWarnings("unchecked")
+    public TipoDocumentoApiIdOutput findById(int tipo,String numero) {
+ 		
+        SQLQuery query = (SQLQuery) session.getCurrentSession().createSQLQuery(QueryNames.TipoDocumentoApiFindById).
+                                                setParameter("tipo", tipo).setParameter("numero", numero);
+        List<Object[]> rows = query.list();
+        TipoDocumentoApiIdOutput tipoDocumento = null ;
+
+        for(Object[] row : rows){	
+        
+            tipoDocumento = new TipoDocumentoApiIdOutput();
+
+            try {
+                    tipoDocumento.
+                            setNumero(row[0].toString()).
+                            setNombre(row[1].toString()).
+                            setApellidos(row[2].toString()).                            
+                            setTelefono(row[3].toString()).
+                            setCorreo(row[4].toString()).
+                            setDireccion(row[5].toString()).
+                            setId(Integer.parseInt(row[6].toString()));
+
+            } catch (NumberFormatException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+            }
+        }		
+
+        return tipoDocumento;
+    }
+    
+    
+     
+
 }

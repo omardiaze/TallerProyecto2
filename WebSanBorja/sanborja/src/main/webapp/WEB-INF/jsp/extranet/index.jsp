@@ -60,6 +60,7 @@
                     </c:if>
                     
                     <c:url var="action" value = "/extranet" />
+                    <c:url var="api" value = "/api" />
                     <form:form action="${action}" enctype="multipart/form-data" method="POST" modelAttribute="solicitud" cssClass="mui-form">
 
                         <div class="mui-panel">
@@ -71,7 +72,7 @@
                             <div class="row">
                                 <div class="mui-col-md-6 mui-col-xs-12">
                                     <div class="mui-select">
-                                        <form:select path="idTipoDocumento" id="cboEstado" >
+                                        <form:select path="idTipoDocumento" id="cboEstado" onchange="getDocumentoNumber()">
                                             <form:options items="${tipodocumentos}" itemValue="id" itemLabel="nombre" />
                                         </form:select>
                                         <label>* Seleccione tipo de documento</label>
@@ -79,7 +80,7 @@
                                 </div>
                                 <div class="mui-col-md-6 mui-col-xs-12">
                                     <div class="mui-textfield">
-                                        <form:input type="text" id="txtNumeroDocumento" maxlength="12" placeholder="${solicitud.numeroDocumentoError}" onkeypress='validate(event)' class="mui-textfield mui-textfield--float-label ${not empty solicitud.numeroDocumentoError ? 'border-color-text-error' : 'border-color-text-ok'}" path="numeroDocumento"  />
+                                        <form:input type="text" id="txtNumeroDocumento" maxlength="12" onblur="getDocumentoNumber()" placeholder="${solicitud.numeroDocumentoError}" onkeypress='validate(event)' class="mui-textfield mui-textfield--float-label ${not empty solicitud.numeroDocumentoError ? 'border-color-text-error' : 'border-color-text-ok'}" path="numeroDocumento"  />
                                         <label id="lblNumeroDocumento" for="txtNumeroDocumento" class="${not empty solicitud.numeroDocumentoError ? 'color-label-error' : 'color-label-ok'}">* Ingrese número de documento</label>
                                     </div>       
                                 </div>
@@ -286,6 +287,31 @@
         });
     });
 
+    function getDocumentoNumber(){
+        var tipo= $('#cboEstado').val();
+        var numero= $('#txtNumeroDocumento').val();
+        if(tipo!=0 && numero.trim().length!=0){
+             $.ajax({
+                url: '${api}/tipodocumento/'+tipo+'/'+numero,
+                type: 'get',
+                dataType: 'json',
+                success: function (data) {          
+                    if(data.apistatus=="OK"){
+                        $('#txtNombre').val(data.nombre);
+                        $('#txtApellido').val(data.apellidos);
+                        $('#txtTelefono').val(data.telefono);
+                        $('#txtCorreo').val(data.correo);
+                        $('#txtDireccion').val(data.direccion);                        
+                    }
+                    //alert(JSON.stringify(data));
+                },
+                error: function (data) {
+                    //alert(JSON.stringify(data));
+                } 
+            });  
+        }
+    }
+    
     function validate(evt) {
        var theEvent = evt || window.event;
        var key = theEvent.keyCode || theEvent.which;
