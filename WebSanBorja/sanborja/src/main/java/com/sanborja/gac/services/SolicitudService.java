@@ -5,10 +5,12 @@
  */
 package com.sanborja.gac.services;
 
+import com.sanborja.gac.model.Asignacion;
 import com.sanborja.gac.model.Persona;
 import com.sanborja.gac.model.Solicitante;
 import com.sanborja.gac.model.Solicitud;
 import com.sanborja.gac.model.TipoSolicitud;
+import com.sanborja.gac.model.api.AsignacionInput;
 import com.sanborja.gac.model.api.CheckStatus;
 import com.sanborja.gac.model.api.Data;
 import com.sanborja.gac.model.api.SolicitudFindByIdOutput;
@@ -45,6 +47,29 @@ public class SolicitudService {
         Data <SolicitudQuery> data = new Data<SolicitudQuery>();
         List<SolicitudQuery> list;
         list = solicitudRepository.query();
+
+        if(list!=null) {
+            
+            if(!list.isEmpty()) {
+                data.setApistatus(Status.Ok);
+            }else{
+                data.setApistatus(Status.Error);
+                data.setApimessage("No hay datos");
+            }
+            
+        }else{
+            data.setApistatus(Status.Error);
+            data.setApimessage("No hay datos");
+        }
+
+        data.setData(list);
+        return data;
+    }
+    
+       public Data<SolicitudQuery> queryAceptado() {
+        Data <SolicitudQuery> data = new Data<SolicitudQuery>();
+        List<SolicitudQuery> list;
+        list = solicitudRepository.queryAceptado();
 
         if(list!=null) {
             
@@ -223,4 +248,33 @@ public class SolicitudService {
         return checkStatus;
     }
     
+     public CheckStatus aceptar(Integer id) {
+        CheckStatus checkStatus= new CheckStatus();
+        checkStatus = solicitudRepository.aceptar(id);
+        return checkStatus;
+    }
+    
+     
+     public CheckStatus asignacion(AsignacionInput input){
+        CheckStatus checkStatus= new CheckStatus();
+        Asignacion asignacion =null;
+        if(input!=null){
+            if(!input.getSolicitudes().isEmpty()){
+                
+                for(Integer solicitud : input.getSolicitudes() ){
+                    asignacion= new Asignacion();
+                    asignacion.
+                            setIdSolicitudQR(solicitud).
+                            setIdPersona(input.getIdEmpleado()).
+                            setObservacion(input.getObservacion()).
+                            setIdAsignacion(0);
+                    
+                    checkStatus=solicitudRepository.asignacion(asignacion);
+                }
+                
+            }
+        }
+        
+        return checkStatus;
+     }
 }

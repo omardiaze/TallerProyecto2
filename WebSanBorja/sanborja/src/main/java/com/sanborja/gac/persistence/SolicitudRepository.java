@@ -5,6 +5,7 @@
  */
 package com.sanborja.gac.persistence;
 
+import com.sanborja.gac.model.Asignacion;
 import com.sanborja.gac.model.Persona;
 import com.sanborja.gac.model.Queja;
 import com.sanborja.gac.model.Reclamo;
@@ -18,6 +19,8 @@ import com.sanborja.gac.model.api.SolicitudQuery;
 import com.sanborja.gac.model.api.Status;
 import com.sanborja.gac.model.api.TipoDocumentoApiIdOutput;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -59,8 +62,92 @@ public class SolicitudRepository {
 
             SolicitudQuery tipoSolicitud = new SolicitudQuery();
             try {
+                //if (row[4] instanceof Date) {
+                    //fechaCreacion = (java.util.Date)row[4];		      
+                //}
+                //Date fechaLimite = null;
+                //if (row[5] instanceof Date) {
+                    //fechaCreacion = (java.util.Date)row[5];		      
+                //}                
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 
-                Date fechaCreacion = null;
+                String fechaCreacion = "";
+                Date dfechaCreacion = null;
+                if (row[4] instanceof Date) {
+                    dfechaCreacion = (java.util.Date)row[4];
+                    fechaCreacion = df.format(dfechaCreacion);
+                }
+                
+                String fechaLimite = "";
+                Date dfechaLimite = null;
+                if (row[5] instanceof Date) {
+                    dfechaLimite = (java.util.Date)row[5];
+                    fechaLimite = df.format(dfechaLimite);
+                }
+                
+                        
+                int idMotivo=0;
+                String motivo="Ninguno";
+                if(row[6]!=null){
+                  idMotivo = Integer.parseInt(row[6].toString());  
+                }
+                
+                if(row[7]!=null){
+                    motivo = row[7].toString();
+                }
+                
+                
+                tipoSolicitud.
+                        setId(Integer.parseInt(row[0].toString())).
+                        setNumero(row[1].toString()).					                            
+                        setTipo(row[2].toString()).
+                        setIdTipo(Integer.parseInt(row[3].toString())).
+                        setFechaCreacion(fechaCreacion).
+                        setFechaLimite(fechaLimite).
+                        setIdMotivo(idMotivo).
+                        setMotivo(motivo).
+                        setSolicitante(row[8].toString()).
+                        setEstado(row[9].toString());
+
+            } catch (NumberFormatException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+            }
+
+            list.add(tipoSolicitud);
+        }
+        return list;
+    } 
+    
+     @SuppressWarnings("unchecked")
+    public List<SolicitudQuery> queryAceptado() {
+
+        SQLQuery query = session.getCurrentSession().createSQLQuery(QueryNames.AceptadoSolicitudQuery);
+        List<Object[]> rows = query.list();
+        List<SolicitudQuery> list = new ArrayList<SolicitudQuery>();
+                
+
+        for(Object[] row : rows){	
+
+            SolicitudQuery tipoSolicitud = new SolicitudQuery();
+            try {
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                
+                String fechaCreacion = "";
+                Date dfechaCreacion = null;
+                if (row[4] instanceof Date) {
+                    dfechaCreacion = (java.util.Date)row[4];
+                    fechaCreacion = df.format(dfechaCreacion);
+                }
+                
+                String fechaLimite = "";
+                Date dfechaLimite = null;
+                if (row[5] instanceof Date) {
+                    dfechaLimite = (java.util.Date)row[5];
+                    fechaLimite = df.format(dfechaLimite);
+                }
+                
+                /*Date fechaCreacion = null;
                 if (row[4] instanceof Date) {
                     fechaCreacion = (java.util.Date)row[4];		      
                 }			
@@ -68,7 +155,7 @@ public class SolicitudRepository {
                 Date fechaLimite = null;
                 if (row[5] instanceof Date) {
                     fechaCreacion = (java.util.Date)row[5];		      
-                }	
+                }*/	
                         
                 int idMotivo=0;
                 String motivo="Ninguno";
@@ -287,8 +374,7 @@ public class SolicitudRepository {
             return checkStatus;
     }
       
-      
-        public CheckStatus delete(Integer id) {		
+    public CheckStatus delete(Integer id) {		
         CheckStatus checkStatus=new CheckStatus();
         try {
 
@@ -320,7 +406,51 @@ public class SolicitudRepository {
         }
         return checkStatus;
     }
+    
+     public CheckStatus aceptar(Integer id) {		
+        CheckStatus checkStatus=new CheckStatus();
+        try {
+
+            Solicitud entityUpdate = (Solicitud) session.getCurrentSession().load(Solicitud.class, id);
+            entityUpdate.setEstado(2);
+            session.getCurrentSession().update(entityUpdate);           
+            
+            checkStatus.setApistatus(Status.Ok);
+            checkStatus.setApimessage("Se acepto esta solicitud satisfactoriamente.");
+
+        }catch(ObjectNotFoundException ex) {
+                checkStatus.setApistatus(Status.Error);
+                checkStatus.setApimessage("No existe tipo de solicitud.");
+        }
+        return checkStatus;
+    }
+    
+       public CheckStatus asignacion(Asignacion asignacion) {		
+        CheckStatus checkStatus=new CheckStatus();
         
+        //Solicitud        
+        asignacion.setFecha(new Timestamp(System.currentTimeMillis()));
+        
+        session.getCurrentSession().save(asignacion);
+         
+
+        if(asignacion.getIdAsignacion()!=0) {	 
+
+            checkStatus.setId(asignacion.getIdAsignacion().toString());
+            checkStatus.setCodigo("");
+            checkStatus.setApistatus(Status.Ok);          
+            
+            checkStatus.setApimessage("Se registró su asignación satisfactoriamente.");	
+            
+        }else {	
+            checkStatus.setApistatus(Status.Error);
+            checkStatus.setApimessage("Error al insertar tipo de solicitud.");
+        }
+
+        return checkStatus;
+    }
+      
+       
         public Timestamp addDays(int days, Timestamp t1) throws Exception{
     if(days < 0){
         throw new Exception("Day in wrong format.");

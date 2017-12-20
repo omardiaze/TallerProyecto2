@@ -21,8 +21,8 @@ public class SolicitudQuery {
     private int idMotivo;
     private String motivo;
     private String estado;
-    private Date fechaCreacion;
-    private Date fechaLimite;
+    private String fechaCreacion;
+    private String fechaLimite;
 
     /**
      * @return the id
@@ -147,14 +147,14 @@ public class SolicitudQuery {
     /**
      * @return the fechaCreacion
      */
-    public Date getFechaCreacion() {
+    public String getFechaCreacion() {
         return fechaCreacion;
     }
 
     /**
      * @param fechaCreacion the fechaCreacion to set
      */
-    public SolicitudQuery setFechaCreacion(Date fechaCreacion) {
+    public SolicitudQuery setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
         return this;
     }
@@ -162,14 +162,14 @@ public class SolicitudQuery {
     /**
      * @return the fechaLimite
      */
-    public Date getFechaLimite() {
+    public String getFechaLimite() {
         return fechaLimite;
     }
 
     /**
      * @param fechaLimite the fechaLimite to set
      */
-    public SolicitudQuery setFechaLimite(Date fechaLimite) {
+    public SolicitudQuery setFechaLimite(String fechaLimite) {
         this.fechaLimite = fechaLimite;
         return this;
     }
