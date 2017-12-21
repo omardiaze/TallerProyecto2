@@ -81,26 +81,7 @@ public class SolicitudController {
         return "intranet/solicitud/asignacion";
     }
     
-    @RequestMapping(value = "/intranet/asignar", method = RequestMethod.POST)
-    public @ResponseBody CheckStatus asignar(@ModelAttribute("asignar") AsignacionInput solicitud, 
-            HttpServletResponse response, HttpSession p_session) {
-        
-        CheckStatus checkStatus= new CheckStatus();
-        //Data<EmpleadoQuery> dataMotivo = empleadoService.query(id);
-          
-        try
-        {         
-            System.out.println(solicitud.getIdEmpleado());
-            System.out.println(solicitud.getObservacion());
-            checkStatus= solicitudService.asignacion(solicitud);
-        //    list= dataMotivo.getData();        
-        }
-        catch(Exception ex)
-        {
-
-        }
-        return checkStatus;
-    }
+  
     
      @RequestMapping(value = "/intranet/empleado/{id}", method = RequestMethod.GET)
     public @ResponseBody List<EmpleadoQuery> findEmpleado(@PathVariable("id") int id, 

@@ -433,7 +433,13 @@ public class SolicitudRepository {
         
         session.getCurrentSession().save(asignacion);
          
-
+        
+        //actualizar solicitud
+        Solicitud entityUpdate = (Solicitud) session.getCurrentSession().load(Solicitud.class, 
+                asignacion.getIdSolicitudQR());
+            entityUpdate.setEstado(3);
+            session.getCurrentSession().update(entityUpdate);    
+            
         if(asignacion.getIdAsignacion()!=0) {	 
 
             checkStatus.setId(asignacion.getIdAsignacion().toString());

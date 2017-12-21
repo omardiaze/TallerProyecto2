@@ -34,7 +34,7 @@
                     <div class="row form">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="cboArea">Seleccione Area:</label>                            
+                                <label for="cboArea">(*) Seleccione Area:</label>                            
                                 <select id="cboArea" class="form-control">
                                     <option value="0">Seleccione</option>
                                 <c:forEach var="entity" items="${listArea}">
@@ -44,7 +44,7 @@
                           </div>                        
                         </div>
                         <div class="col-sm-6"> <div class="form-group">
-                             <label for="cboEmpleado">Seleccione Empleado:</label>                            
+                             <label for="cboEmpleado">(*) Seleccione Empleado:</label>                            
                              <select id="cboEmpleado" class="form-control">
                                  <option value="0">Seleccione</option>
                              </select></div>
@@ -54,14 +54,14 @@
                     <div class="row form">
                         <div class="col-sm-12">
                             <div class="form-group">
-                             <label for="cboArea">Ingrese Descripcion:</label>   
+                             <label for="cboArea">(*) Ingrese Observación:</label>   
                              <textarea id="txtDescripcion" class="form-control"></textarea>
                              </div>
                         </div>
                     </div>
            
                     <div class="row" style="padding-top: 10px;padding-bottom: 10px; ">
-                        <h4>Seleccione Solicitudes</h4>
+                        <h4>(*) Seleccione Solicitudes</h4>
                         <hr/>
                     </div>
                      <div class="row" style="padding-top: 10px;padding-bottom: 10px; ">
@@ -145,30 +145,58 @@
                      
                      $('input.chkSolicitud:checkbox').each(function () {
                         var valor = $(this).val();
-                         alert(valor);
+                         
                         if ($(this).is(":checked")) {
                           oTemplate.solicitudes.push(valor);
                         }
                     });
-                    alert(JSON.stringify(oTemplate));
+                    var mensaje="";
+                    if(oTemplate.idEmpleado=="0"){
+                        mensaje+="- Debe seleccionar un empleado. \n";
+                        
+                    }
+                    
+                    if(oTemplate.observacion.trim().length==0){
+                        mensaje+="- Debe ingresar observacion. \n";
+                        
+                    }
+                    
+                    if(oTemplate.solicitudes.length==0){
+                        
+                        mensaje+="- Debes seleccionar al menos una solicitud. \n";
+                    }
+                    
+                    if(mensaje.length==0){
+                   // alert(JSON.stringify(oTemplate));
                     
                      $.ajax({
                             type: "POST",
                             //the url where you want to sent the userName and password to
                             url: '${action}/asignar/',
+                            contentType: "application/json; charset=utf-8",                            
                             dataType: 'json',
                             async: false,
                             //json object to sent to the authentication url
                             data: JSON.stringify(oTemplate),
                             success: function (response) {
                                 console.log(JSON.stringify(response));
-                                alert("Thanks!"); 
+                                 if(response.apistatus=="OK"){
+                                         alert(response.apimessage);    
+                                         //load
+                                         location.reload();
+
+
+                                 }
                             },
                             error: function (jqXHR, textStatus, errorThrown) {
                                 console.log(textStatus);
                             }
                             
                         })
+                    }else{
+                        alert(mensaje);
+                    
+                    }
                 });
             });
         </script>
