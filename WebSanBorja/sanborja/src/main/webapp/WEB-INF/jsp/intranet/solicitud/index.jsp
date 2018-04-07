@@ -22,7 +22,7 @@
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
                   <li class="breadcrumb-item"><a href="<c:url value = "/intranet"/>">Atención al Ciudadano</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Solicitudes</li>
+                  <li class="breadcrumb-item active" aria-current="page">Aprobación</li>
                 </ol>
             </nav>               
             
