@@ -28,7 +28,7 @@
             
             <div class="card">
                 <div class="card-header">                 
-                    <h3>Solicitudes </h3>
+                    <h3>Aprobación de solicitudes</h3>
                 </div>
                 <div class="card-body">
                  <table class="table table-striped">
