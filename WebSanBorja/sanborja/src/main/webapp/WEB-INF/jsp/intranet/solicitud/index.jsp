@@ -48,10 +48,22 @@
                                 <a href="<c:url value = "/intranet/solicitud/ver/${entity.id}"/>"  class="btn btn-sm btn-success">
                                     <i class="fa fa-search" aria-hidden="true"></i> 
                                 </a>   
-                                &nbsp;
-                                <a href="<c:url value = "/intranet/solicitud/aceptar/${entity.id}"/>"   class="btn btn-sm btn-success">
-                                    <i class="fa fa-check" aria-hidden="true"></i> 
-                                </a>   
+                                &nbsp;                                
+                                <c:choose>
+                                    <c:when test="${entity.estado =='Pendiente'}">
+                                        <a href="<c:url value = "/intranet/solicitud/aceptar/${entity.id}"/>"   class="btn btn-sm btn-success">
+                                            <i class="fa fa-check" aria-hidden="true"></i> 
+                                        </a> 
+                                    </c:when>
+                                    <c:when test="${entity.estado =='Aprobado'}">
+                                        <a href="!#"   class="btn btn-sm btn-default disabled">
+                                            <i class="fa fa-check" aria-hidden="true"></i> 
+                                        </a> 
+                                    </c:when>
+                                    <c:otherwise>
+                                    </c:otherwise>
+                                </c:choose>
+                                
                                 &nbsp;
                                 <a href="<c:url value = "/intranet/solicitud/eliminar/${entity.id}"/>"   class="btn btn-sm btn-danger">
                                     <i class="fa fa-remove" aria-hidden="true"></i> 
