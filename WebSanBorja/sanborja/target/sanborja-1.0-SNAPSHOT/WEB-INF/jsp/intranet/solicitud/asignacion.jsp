@@ -27,7 +27,7 @@
               
          <div class="card">
             <div class="card-header">                 
-                <h3>Crear Asignación </h3>
+                <h3>Asignación de solicitudes</h3>
             </div>
                 <div class="card-body">
                       <c:url var="action" value = "/intranet" />

@@ -9,7 +9,7 @@
     text-align: center;">
 
     <div class="container-fluid">
-        <span class="text-muted">2017</span>
+        <span class="text-muted">2018</span>
     </div>
     
 </footer>

@@ -27,11 +27,18 @@
             <property name="password" value="p4mHmDzG8TN8c8x4" />
     </bean-->
 
-     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
             <property name="driverClassName" value="com.mysql.jdbc.Driver" />
             <property name="url" value="jdbc:mysql://localhost:3306/atencionciudadano" />
             <property name="username" value="root" />
             <property name="password" value="123456" />
+    </bean>-->
+    
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+            <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+            <property name="url" value="jdbc:mysql://MYSQL5018.site4now.net/db_a35055_muni" />
+            <property name="username" value="a35055_muni" />
+            <property name="password" value="Muni123456789" />
     </bean>
     
     <!-- Session Factory Declaration -->
