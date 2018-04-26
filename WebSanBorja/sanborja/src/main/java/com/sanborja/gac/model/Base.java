@@ -16,17 +16,17 @@ import javax.validation.constraints.Min;
 @MappedSuperclass
 public class Base {
     
-    @Min(value = 1, message = "Seleccione un Estado valido.")
+    //@Min(value = 1, message = "Seleccione un Estado valido.")
     @Column(name="estado")
-    private Integer estado;
+    private String estado;
 
     
 
-    public Integer getEstado() {
+    public String getEstado() {
             return estado;
     }
 
-    public Base setEstado(Integer estado) {
+    public Base setEstado(String estado) {
             this.estado = estado;
             return this;
     }

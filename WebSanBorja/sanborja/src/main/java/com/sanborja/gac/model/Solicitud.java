@@ -26,32 +26,32 @@ public class Solicitud extends Base implements Serializable{
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "idSolicitudQR")
-    private Integer idSolicitudQR;
+    @Column(name = "id")
+    private Integer id;
     
     @Column(name = "descripcion")
     private String descripcion;
     
-    @Column(name="fechaCreacion")    
-    private Timestamp fechaCreacion;
+    @Column(name="fecreg")    
+    private String fechaCreacion;
     
-    @Column(name="fechaLimite")    
+    @Column(name="feclim")    
     private Timestamp fechaLimite;
     
-    @Column(name = "file")
+    @Column(name = "imagen")
     private String file;
     
-    @Column(name = "idMotivoQR")
+    @Column(name = "idMotivo")
     private Integer idMotivoQR;
             
-    @Column(name = "idTipoSolicitud")
-    private Integer idTipoSolicitud;
+    @Column(name = "tipSol")
+    private String idTipoSolicitud;
             
-    @Column(name = "idPersona")
-    private Integer idPersona;
+    @Column(name = "correo")
+    private String idPersona;
 
-    @Column(name = "notificacion")
-    private Integer notificacion;
+//    @Column(name = "notificacion")
+//    private Integer notificacion;
 
     
     @Transient
@@ -61,14 +61,14 @@ public class Solicitud extends Base implements Serializable{
      * @return the idSolicitudQR
      */
     public Integer getIdSolicitudQR() {
-        return idSolicitudQR;
+        return id;
     }
 
     /**
      * @param idSolicitudQR the idSolicitudQR to set
      */
-    public Solicitud setIdSolicitudQR(Integer idSolicitudQR) {
-        this.idSolicitudQR = idSolicitudQR;
+    public Solicitud setIdSolicitudQR(Integer id) {
+        this.id = id;
         return this;
     }
 
@@ -90,14 +90,14 @@ public class Solicitud extends Base implements Serializable{
     /**
      * @return the fechaCreacion
      */
-    public Timestamp getFechaCreacion() {
+    public String getFechaCreacion() {
         return fechaCreacion;
     }
 
     /**
      * @param fechaCreacion the fechaCreacion to set
      */
-    public Solicitud setFechaCreacion(Timestamp fechaCreacion) {
+    public Solicitud setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
         return this;
     }
@@ -151,14 +151,14 @@ public class Solicitud extends Base implements Serializable{
     /**
      * @return the idTipoSolicitud
      */
-    public Integer getIdTipoSolicitud() {
+    public String getIdTipoSolicitud() {
         return idTipoSolicitud;
     }
 
     /**
      * @param idTipoSolicitud the idTipoSolicitud to set
      */
-    public Solicitud setIdTipoSolicitud(Integer idTipoSolicitud) {
+    public Solicitud setIdTipoSolicitud(String idTipoSolicitud) {
         this.idTipoSolicitud = idTipoSolicitud;
         return this;
     }
@@ -166,14 +166,14 @@ public class Solicitud extends Base implements Serializable{
     /**
      * @return the idPersona
      */
-    public Integer getIdPersona() {
+    public String getIdPersona() {
         return idPersona;
     }
 
     /**
      * @param idPersona the idPersona to set
      */
-    public Solicitud setIdPersona(Integer idPersona) {
+    public Solicitud setIdPersona(String idPersona) {
         this.idPersona = idPersona;
         return this;
     }
@@ -196,17 +196,17 @@ public class Solicitud extends Base implements Serializable{
     /**
      * @return the notificacion
      */
-    public Integer getNotificacion() {
-        return notificacion;
-    }
+//    public Integer getNotificacion() {
+//        return notificacion;
+//    }
 
     /**
      * @param notificacion the notificacion to set
      */
-    public Solicitud setNotificacion(Integer notificacion) {
-        this.notificacion = notificacion;
-        return this;
-    }
+//    public Solicitud setNotificacion(Integer notificacion) {
+//        this.notificacion = notificacion;
+//        return this;
+//    }
     
     
     

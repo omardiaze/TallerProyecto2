@@ -13,7 +13,7 @@ public class TipoSolicitudInput {
     private int id;	
     private String codigo;
     private String nombre;
-    private int estado;
+    private String estado;
 
     /**
      * @return the id
@@ -63,14 +63,14 @@ public class TipoSolicitudInput {
     /**
      * @return the estado
      */
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
     /**
      * @param estado the estado to set
      */
-    public TipoSolicitudInput setEstado(int estado) {
+    public TipoSolicitudInput setEstado(String estado) {
         this.estado = estado;
         return this;
     }
@@ -79,7 +79,7 @@ public class TipoSolicitudInput {
         this.id=0;
         this.codigo="";
         this.nombre="";
-        this.estado=1;
+        this.estado="P";
     }
     
     

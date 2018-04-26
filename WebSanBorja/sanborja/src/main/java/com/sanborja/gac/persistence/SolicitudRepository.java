@@ -260,117 +260,117 @@ public class SolicitudRepository {
     
     public CheckStatus create(Solicitud solicitud) {		
         CheckStatus checkStatus=new CheckStatus();
-        String entidad="";
-        String codigo="";
-        
-        //System.out.println(solicitud.getSolicitante().getPersona().getIdTipoDocumento());
-        //System.out.println(solicitud.getSolicitante().getPersona().getNumeroDocumento());
-        //buscar idPersona
-        int idPersona = 0;
-        TipoDocumentoApiIdOutput tipoDocumentoApi = tipoDocumentoRepository.findById(
-                    solicitud.getSolicitante().getPersona().getIdTipoDocumento(),
-                    solicitud.getSolicitante().getPersona().getNumeroDocumento());
-        
-        Persona persona=new Persona();
-        Solicitante solicitante=new Solicitante();
-        
-        if(tipoDocumentoApi!=null){
-            idPersona= tipoDocumentoApi.getId();
-            //Persona
-             persona = (Persona) session.getCurrentSession().load(Persona.class,idPersona);
-            persona.setNombre(solicitud.getSolicitante().getPersona().getNombre());
-            persona.setApellido(solicitud.getSolicitante().getPersona().getApellido());
-            session.getCurrentSession().update(persona);
-            
-            
-            solicitante = (Solicitante) session.getCurrentSession().load(Solicitante.class,idPersona);
-            solicitante.setTelefono(solicitud.getSolicitante().getTelefono());
-            solicitante.setCorreo(solicitud.getSolicitante().getCorreo());
-            solicitante.setDireccion(solicitud.getSolicitante().getDireccion());
-            session.getCurrentSession().update(solicitante);
-            
-        }else{
-            
-            codigo =helperRepository.GenerateCode(Entity.Persona);	
-            
-            persona= solicitud.getSolicitante().getPersona();
-            persona.setCodigo(codigo);
-            session.getCurrentSession().save(persona);
-            System.out.print(persona.getIdPersona());
-
-            //Solicitante            
-            solicitante= solicitud.getSolicitante();
-            solicitante.setIdPersona(persona.getIdPersona());        
-            session.getCurrentSession().save(solicitante);            
-            
-        }
-       
-        //Solicitud
-        solicitud.setIdPersona(persona.getIdPersona());
-        solicitud.setFechaCreacion(new Timestamp(System.currentTimeMillis()));
-        try {
-            Date date = new Date();
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(date);
-            cal.add(Calendar.DATE, 30); //minus number would decrement the days
-            solicitud.setFechaLimite(new java.sql.Timestamp(cal.getTimeInMillis()));
-            //solicitud.setFechaLimite( addDays(30,solicitud.getFechaCreacion()));
-        } catch (Exception ex) {
-            Logger.getLogger(SolicitudRepository.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        session.getCurrentSession().save(solicitud);
-                
-        String numero = "";
-        entidad="";        
-        if(solicitud.getIdTipoSolicitud()==1){
-            entidad = Entity.Reclamo;
-        }else if(solicitud.getIdTipoSolicitud()==2){
-            entidad = Entity.Queja;
-        }        
-        numero =helperRepository.GenerateCode(entidad);	
-        numero="2017-00"+numero;
-       
-        if(solicitud.getIdTipoSolicitud()==1){
-            //Reclamos
-            Reclamo reclamo = new Reclamo();
-            reclamo.setIdSolicitudQR(solicitud.getIdSolicitudQR());
-            reclamo.setNumero(numero);
-            reclamo.setCodigoSirec("");
-            session.getCurrentSession().save(reclamo);
-            
-         }else if(solicitud.getIdTipoSolicitud()==2){
-
-            //Queja 
-            Queja queja = new Queja();
-            queja.setIdSolicitudQR(solicitud.getIdSolicitudQR());
-            queja.setNumero(numero);
-           session.getCurrentSession().save(queja);
-            
-        }
-         
-
-        if(solicitud.getIdSolicitudQR()!=0) {	 
-
-            checkStatus.setId(solicitud.getIdSolicitudQR().toString());
-            checkStatus.setCodigo(numero);
-            checkStatus.setApistatus(Status.Ok);
-            String nombreentidad="";
-            
-            if(solicitud.getIdTipoSolicitud()==1){
-                nombreentidad="Reclamo";
-            }else if(solicitud.getIdTipoSolicitud()==2){
-                nombreentidad="Queja";
-            }
-            
-            checkStatus.setApimessage("Se registró su "+nombreentidad+" Nro "+numero+"  satisfactoriamente.");	
-            
-        }else {	
-            checkStatus.setApistatus(Status.Error);
-            checkStatus.setApimessage("Error al insertar tipo de solicitud.");
-        }
-
+//        String entidad="";
+//        String codigo="";
+//        
+//        //System.out.println(solicitud.getSolicitante().getPersona().getIdTipoDocumento());
+//        //System.out.println(solicitud.getSolicitante().getPersona().getNumeroDocumento());
+//        //buscar idPersona
+//        int idPersona = 0;
+//        TipoDocumentoApiIdOutput tipoDocumentoApi = tipoDocumentoRepository.findById(
+//                    solicitud.getSolicitante().getPersona().getIdTipoDocumento(),
+//                    solicitud.getSolicitante().getPersona().getNumeroDocumento());
+//        
+//        Persona persona=new Persona();
+//        Solicitante solicitante=new Solicitante();
+//        
+//        if(tipoDocumentoApi!=null){
+//            idPersona= tipoDocumentoApi.getId();
+//            //Persona
+//             persona = (Persona) session.getCurrentSession().load(Persona.class,idPersona);
+//            persona.setNombre(solicitud.getSolicitante().getPersona().getNombre());
+//            persona.setApellido(solicitud.getSolicitante().getPersona().getApellido());
+//            session.getCurrentSession().update(persona);
+//            
+//            
+//            solicitante = (Solicitante) session.getCurrentSession().load(Solicitante.class,idPersona);
+//            solicitante.setTelefono(solicitud.getSolicitante().getTelefono());
+//            solicitante.setCorreo(solicitud.getSolicitante().getCorreo());
+//            solicitante.setDireccion(solicitud.getSolicitante().getDireccion());
+//            session.getCurrentSession().update(solicitante);
+//            
+//        }else{
+//            
+//            codigo =helperRepository.GenerateCode(Entity.Persona);	
+//            
+//            persona= solicitud.getSolicitante().getPersona();
+//            persona.setCodigo(codigo);
+//            session.getCurrentSession().save(persona);
+//            System.out.print(persona.getIdPersona());
+//
+//            //Solicitante            
+//            solicitante= solicitud.getSolicitante();
+//            solicitante.setIdPersona(persona.getIdPersona());        
+//            session.getCurrentSession().save(solicitante);            
+//            
+//        }
+//       
+//        //Solicitud
+//        solicitud.setIdPersona(persona.getIdPersona());
+//        solicitud.setFechaCreacion(new Timestamp(System.currentTimeMillis()));
+//        try {
+//            Date date = new Date();
+//            Calendar cal = Calendar.getInstance();
+//            cal.setTime(date);
+//            cal.add(Calendar.DATE, 30); //minus number would decrement the days
+//            solicitud.setFechaLimite(new java.sql.Timestamp(cal.getTimeInMillis()));
+//            //solicitud.setFechaLimite( addDays(30,solicitud.getFechaCreacion()));
+//        } catch (Exception ex) {
+//            Logger.getLogger(SolicitudRepository.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        
+//        session.getCurrentSession().save(solicitud);
+//                
+//        String numero = "";
+//        entidad="";        
+//        if(solicitud.getIdTipoSolicitud()==1){
+//            entidad = Entity.Reclamo;
+//        }else if(solicitud.getIdTipoSolicitud()==2){
+//            entidad = Entity.Queja;
+//        }        
+//        numero =helperRepository.GenerateCode(entidad);	
+//        numero="2017-00"+numero;
+//       
+//        if(solicitud.getIdTipoSolicitud()==1){
+//            //Reclamos
+//            Reclamo reclamo = new Reclamo();
+//            reclamo.setIdSolicitudQR(solicitud.getIdSolicitudQR());
+//            reclamo.setNumero(numero);
+//            reclamo.setCodigoSirec("");
+//            session.getCurrentSession().save(reclamo);
+//            
+//         }else if(solicitud.getIdTipoSolicitud()==2){
+//
+//            //Queja 
+//            Queja queja = new Queja();
+//            queja.setIdSolicitudQR(solicitud.getIdSolicitudQR());
+//            queja.setNumero(numero);
+//           session.getCurrentSession().save(queja);
+//            
+//        }
+//         
+//
+//        if(solicitud.getIdSolicitudQR()!=0) {	 
+//
+//            checkStatus.setId(solicitud.getIdSolicitudQR().toString());
+//            checkStatus.setCodigo(numero);
+//            checkStatus.setApistatus(Status.Ok);
+//            String nombreentidad="";
+//            
+//            if(solicitud.getIdTipoSolicitud()==1){
+//                nombreentidad="Reclamo";
+//            }else if(solicitud.getIdTipoSolicitud()==2){
+//                nombreentidad="Queja";
+//            }
+//            
+//            checkStatus.setApimessage("Se registró su "+nombreentidad+" Nro "+numero+"  satisfactoriamente.");	
+//            
+//        }else {	
+//            checkStatus.setApistatus(Status.Error);
+//            checkStatus.setApimessage("Error al insertar tipo de solicitud.");
+//        }
+//
             return checkStatus;
     }
       
@@ -412,7 +412,8 @@ public class SolicitudRepository {
         try {
 
             Solicitud entityUpdate = (Solicitud) session.getCurrentSession().load(Solicitud.class, id);
-            entityUpdate.setEstado(2);
+            //entityUpdate.setFechaCreacion(fechaCreacion)
+            entityUpdate.setEstado("A");
             session.getCurrentSession().update(entityUpdate);           
             
             checkStatus.setApistatus(Status.Ok);
@@ -437,7 +438,7 @@ public class SolicitudRepository {
         //actualizar solicitud
         Solicitud entityUpdate = (Solicitud) session.getCurrentSession().load(Solicitud.class, 
                 asignacion.getIdSolicitudQR());
-            entityUpdate.setEstado(3);
+            entityUpdate.setEstado("R");
             session.getCurrentSession().update(entityUpdate);    
             
         if(asignacion.getIdAsignacion()!=0) {	 
