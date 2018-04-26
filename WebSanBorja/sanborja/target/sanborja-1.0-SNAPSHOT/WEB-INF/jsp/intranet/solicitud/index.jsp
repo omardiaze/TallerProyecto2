@@ -65,9 +65,27 @@
                                 </c:choose>
                                 
                                 &nbsp;
-                                <a href="<c:url value = "/intranet/solicitud/eliminar/${entity.id}"/>"   class="btn btn-sm btn-danger">
+                                <a data-href="<c:url value = "/intranet/solicitud/eliminar/${entity.id}"/>" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#confirm-delete">
                                     <i class="fa fa-remove" aria-hidden="true"></i> 
-                                </a>   
+                                </a>
+                                
+                                <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                Eliminar Solicitud
+                                            </div>
+                                            <div class="modal-body">
+                                                ¿Desea eliminar la solicitud seleccionada?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                <a class="btn btn-danger btn-ok">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </td>
                             <td>${entity.numero}</td>
                             <td>${entity.tipo}</td>   

@@ -7320,6 +7320,8 @@ textarea.md-textarea {
   padding: 0;
   padding-bottom: 0.6rem;
   padding-top: 0.5rem;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
   font-size: 1rem;
   line-height: 1.5;
   background-color: transparent;
@@ -7429,7 +7431,8 @@ textarea.md-textarea {
 
 textarea {
   width: 100%;
-  height: 3rem;
+/*  height: 3rem;*/
+    height: initial;
   background-color: transparent; }
   textarea.md-textarea {
     overflow-y: hidden;

@@ -220,25 +220,25 @@ public class SolicitudService {
     }
      
     public SolicitudFindByIdOutput findById(int id) {
-        SolicitudFindByIdOutput moneda = new SolicitudFindByIdOutput();		 
-        moneda = solicitudRepository.findById(id);
+        SolicitudFindByIdOutput solicitud = new SolicitudFindByIdOutput();		 
+        solicitud = solicitudRepository.findById(id);
 
-        if(moneda!=null) {
-            if(moneda.getId()!=0) {
-                    moneda.setApistatus(Status.Ok);
+        if(solicitud!=null) {
+            if(solicitud.getId()!=0) {
+                    solicitud.setApistatus(Status.Ok);
 
             }else{
-                    moneda = new SolicitudFindByIdOutput();
-                    moneda.setApistatus(Status.Error);
-                    moneda.setApimessage("No hay datos");
+                    solicitud = new SolicitudFindByIdOutput();
+                    solicitud.setApistatus(Status.Error);
+                    solicitud.setApimessage("No hay datos");
             }
         }else{
-                moneda = new SolicitudFindByIdOutput();
-                moneda.setApistatus(Status.Error);
-                moneda.setApimessage("No hay datos");
+                solicitud = new SolicitudFindByIdOutput();
+                solicitud.setApistatus(Status.Error);
+                solicitud.setApimessage("No hay datos");
         }
 
-        return moneda;
+        return solicitud;
     }
      
      

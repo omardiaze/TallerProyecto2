@@ -89,41 +89,43 @@ public class QueryNames {
                     "inner join persona per " +
                     "on sol.idPersona =  per.idPersona where sol.estado = 2";
         
-     public static String SolicitudFindById="SELECT " +
-                    "sol.idSolicitudQR as id," +
-                    "(case sol.idTipoSolicitud " +
-                    "when 1 then rec.numero " +
-                    "when 2 then que.numero end ) as numero," +
-                    "tip.nombre as tipo," +
-                    "sol.idTipoSolicitud as idTipo," +
-                    "sol.fechaCreacion," +
-                    "sol.fechaLimite," +
-                    "sol.idMotivoQR as idMotivo," +
-                    "mot.nombre as motivo," +
-                    "concat(per.nombre,' ', per.apellido) as solicitante," +
-                    "ufnDevolverEstado(2000,sol.estado) as estado," +
-                    "sol.file, " +             
-                    "td.nombre as tipoDocumento,"+
-                    "per.numeroDocumento,"+
-                    "soli.correo,"+
-                    "soli.telefono,"+
-                    "soli.direccion," +
-                    "sol.descripcion "+             
-                    "FROM solicitudqr sol " +
-                    "inner join tiposolicitud tip " +
-                    "on sol.idTipoSolicitud = tip.idTipoSolicitud " +
-                    "left outer join queja que " +
-                    "on sol.idSolicitudQR = que.idSolicitudQR " +
-                    "left outer join reclamo rec " +
-                    "on sol.idSolicitudQR = rec.idSolicitudQR " +
-                    "left outer join motivoqr mot " +
-                    "on sol.idMotivoQR = mot.idMotivoQR " +
-                    "inner join persona per " +
-                    "on sol.idPersona =  per.idPersona "+
-             
-                    "inner join tipodocumento td "+
-                    "on td.idTipoDocumento = per.idTipoDocumento "+
-                    "inner join solicitante soli "+
-                    "on sol.idPersona = soli.idPersona and per.idPersona = soli.idPersona "+
-                    " where sol.idSolicitudQR=:id";
+       public static String SolicitudFindById="SELECT sol.id as id, sol.codigosolicitud numero, tip.nombre as tipo, (case sol.tipsol  when 'Q' then 1 when 'R' then 2 end ) as idTipo, STR_TO_DATE(sol.fecreg,'%d/%m/%Y %H:%i:%s') as fechaCreacion, sol.feclim as fechaLimite, sol.idMotivo as idMotivo, mot.nombre as motivo, concat(per.nombre,' ', per.ApePat, ' ', ApeMat) as solicitante, est.descripcion as estado, sol.imagen as file, per.tipdoc tipoDocumento, per.numdoc numeroDocumento, per.correo correo, ' ' telefono, sol.direccion direccion, sol.descripcion descripcion FROM solicitudqr sol inner join tiposolicitud tip on sol.tipSol = tip.codigo left outer join motivoqr mot on sol.idMotivo = mot.id inner join persona per on sol.correo =  per.correo inner join estadotramite est on sol.estado = est.nombre WHERE sol.id =:id";
+       
+//     public static String SolicitudFindById="SELECT " +
+//                    "sol.idSolicitudQR as id," +
+//                    "(case sol.idTipoSolicitud " +
+//                    "when 1 then rec.numero " +
+//                    "when 2 then que.numero end ) as numero," +
+//                    "tip.nombre as tipo," +
+//                    "sol.idTipoSolicitud as idTipo," +
+//                    "sol.fechaCreacion," +
+//                    "sol.fechaLimite," +
+//                    "sol.idMotivoQR as idMotivo," +
+//                    "mot.nombre as motivo," +
+//                    "concat(per.nombre,' ', per.apellido) as solicitante," +
+//                    "ufnDevolverEstado(2000,sol.estado) as estado," +
+//                    "sol.file, " +             
+//                    "td.nombre as tipoDocumento,"+
+//                    "per.numeroDocumento,"+
+//                    "soli.correo,"+
+//                    "soli.telefono,"+
+//                    "soli.direccion," +
+//                    "sol.descripcion "+             
+//                    "FROM solicitudqr sol " +
+//                    "inner join tiposolicitud tip " +
+//                    "on sol.idTipoSolicitud = tip.idTipoSolicitud " +
+//                    "left outer join queja que " +
+//                    "on sol.idSolicitudQR = que.idSolicitudQR " +
+//                    "left outer join reclamo rec " +
+//                    "on sol.idSolicitudQR = rec.idSolicitudQR " +
+//                    "left outer join motivoqr mot " +
+//                    "on sol.idMotivoQR = mot.idMotivoQR " +
+//                    "inner join persona per " +
+//                    "on sol.idPersona =  per.idPersona "+
+//             
+//                    "inner join tipodocumento td "+
+//                    "on td.idTipoDocumento = per.idTipoDocumento "+
+//                    "inner join solicitante soli "+
+//                    "on sol.idPersona = soli.idPersona and per.idPersona = soli.idPersona "+
+//                    " where sol.idSolicitudQR=:id";
 }

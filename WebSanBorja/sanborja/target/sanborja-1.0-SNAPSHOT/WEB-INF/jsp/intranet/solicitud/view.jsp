@@ -100,7 +100,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label>Descripción</label>
-                                <textarea class="form-control" disabled="disabled" >${solicitud.descripcion}</textarea>                                
+                                <textarea rows="4" class="form-control" disabled="disabled" >${solicitud.descripcion}</textarea>                                
                             </div>  
                         </div>               
                             

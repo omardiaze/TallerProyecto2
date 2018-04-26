@@ -8,3 +8,5 @@
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="<c:url value="/resources/js/mdb.min.js"/>"></script>
+<!-- Javascript Customize -->
+<script type="text/javascript" src="<c:url value="/resources/js/main.js"/>"></script>
