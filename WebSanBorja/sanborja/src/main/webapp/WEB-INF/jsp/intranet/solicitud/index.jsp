@@ -45,7 +45,7 @@
                     <c:forEach var="entity" items="${list}">
                         <tr>
                             <td>
-                                <a href="<c:url value = "/intranet/solicitud/ver/${entity.id}"/>"  class="btn btn-sm btn-success">
+                                <a data-href="<c:url value = "/intranet/solicitud/ver/${entity.id}"/>"  class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-detalle">
                                     <i class="fa fa-search" aria-hidden="true"></i> 
                                 </a>   
                                 &nbsp;                                
@@ -69,22 +69,7 @@
                                     <i class="fa fa-remove" aria-hidden="true"></i> 
                                 </a>
                                 
-                                <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                Eliminar Solicitud
-                                            </div>
-                                            <div class="modal-body">
-                                                ¿Desea eliminar la solicitud seleccionada?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-danger btn-ok">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 
                             </td>
                             <td>${entity.numero}</td>
@@ -99,7 +84,43 @@
                 </div>
             </div>
              
-        </div>        
+        </div>
+                  
+        <!-- modal delete -->       
+        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        Eliminar Solicitud
+                    </div>
+                    <div class="modal-body">
+                        ¿Desea eliminar la solicitud seleccionada?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <a class="btn btn-danger btn-ok">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- modal detalle -->
+        <div class="modal fade" id="modal-detalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Detalle</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
+              </div>
+              <div class="modal-body">
+                  <iframe id="modal-detalle-solicitud" width="100%" height="500" frameborder="0" allowtransparency="true"></iframe>  
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
     
  
         <%@include file="../template/footer.jsp" %>

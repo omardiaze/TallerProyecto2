@@ -37,6 +37,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  *
  * @author Marlon Cordova
+ * @update by Omar Diaz
  */
 @Repository
 @Transactional
@@ -378,31 +379,31 @@ public class SolicitudRepository {
         CheckStatus checkStatus=new CheckStatus();
         try {
 
-            Queja entityQuejaUpdate = (Queja) session.getCurrentSession().load(Queja.class, id);
-            Reclamo entityReclamoUpdate = (Reclamo) session.getCurrentSession().load(Reclamo.class, id);
+//            Queja entityQuejaUpdate = (Queja) session.getCurrentSession().load(Queja.class, id);
+//            Reclamo entityReclamoUpdate = (Reclamo) session.getCurrentSession().load(Reclamo.class, id);
             
             Solicitud entityUpdate = (Solicitud) session.getCurrentSession().load(Solicitud.class, id);
             
             session.getCurrentSession().delete(entityUpdate);
 
-            if(entityQuejaUpdate!=null){
-                if(entityQuejaUpdate.getIdSolicitudQR()!=0){
-                 session.getCurrentSession().delete(entityQuejaUpdate);
-                }
-            }
-            
-              if(entityReclamoUpdate!=null){
-                if(entityReclamoUpdate.getIdSolicitudQR()!=0){
-                 session.getCurrentSession().delete(entityReclamoUpdate);
-                }
-            }
+//            if(entityQuejaUpdate!=null){
+//                if(entityQuejaUpdate.getIdSolicitudQR()!=0){
+//                 session.getCurrentSession().delete(entityQuejaUpdate);
+//                }
+//            }
+//            
+//              if(entityReclamoUpdate!=null){
+//                if(entityReclamoUpdate.getIdSolicitudQR()!=0){
+//                 session.getCurrentSession().delete(entityReclamoUpdate);
+//                }
+//            }
             
             checkStatus.setApistatus(Status.Ok);
-            checkStatus.setApimessage("Se elimino tipo de solicitud satisfactoriamente.");
+            checkStatus.setApimessage("Se elimino la solicitud satisfactoriamente.");
 
         }catch(ObjectNotFoundException ex) {
                 checkStatus.setApistatus(Status.Error);
-                checkStatus.setApimessage("No existe tipo de solicitud.");
+                checkStatus.setApimessage("No existe la solicitud.");
         }
         return checkStatus;
     }
@@ -421,7 +422,7 @@ public class SolicitudRepository {
 
         }catch(ObjectNotFoundException ex) {
                 checkStatus.setApistatus(Status.Error);
-                checkStatus.setApimessage("No existe tipo de solicitud.");
+                checkStatus.setApimessage("No existe la solicitud.");
         }
         return checkStatus;
     }

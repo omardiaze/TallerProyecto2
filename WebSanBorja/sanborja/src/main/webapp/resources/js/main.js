@@ -5,7 +5,16 @@
  */
 
 $('#confirm-delete').on('show.bs.modal', function(e) {
+    console.log('confirm');
     $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-    console.log($(e.relatedTarget).data('href'));
 });
 
+$('#modal-detalle').on('show.bs.modal', function(e) {
+    console.log('show');
+    $(this).find('#modal-detalle-solicitud').attr('src',$(e.relatedTarget).data('href'));
+});
+
+$('#modal-detalle').on('hide.bs.modal', function(e) {
+    console.log('close');
+    $(this).find('#modal-detalle-solicitud').attr('src',' ');
+});

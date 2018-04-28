@@ -2,6 +2,9 @@
     Document   : index
     Created on : 03/12/2017, 09:31:23 PM
     Author     : Marlon Cordova
+    Update by  : Omar Diaz
+    Updated on : 28/04/2018, 09:31:23 PM
+
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

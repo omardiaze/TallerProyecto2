@@ -9,6 +9,7 @@ package com.sanborja.gac.controllers;
 import com.sanborja.gac.model.api.CheckStatus;
 import com.sanborja.gac.model.api.Data;
 import com.sanborja.gac.model.api.MotivoQuery;
+import com.sanborja.gac.model.api.SolicitudFindByIdOutput;
 import com.sanborja.gac.model.api.Status;
 import com.sanborja.gac.model.api.TipoSolicitudFindByIdOutput;
 import com.sanborja.gac.model.api.SolicitudInput;
@@ -148,4 +149,11 @@ public class ExtranetController {
         return list;
     }
     
+    @RequestMapping(value = "/extranet/solicitud/ver/{id}", method = RequestMethod.GET)
+    public String edit(Model model, HttpServletRequest request, HttpServletResponse response,
+            @PathVariable int id) {        
+        SolicitudFindByIdOutput tipoSolicitud = solicitudService.findById(id);        
+        model.addAttribute("solicitud", tipoSolicitud);
+        return "extranet/detalle";
+    }
 }

@@ -2,6 +2,7 @@
     Document   : view
     Created on : 04/12/2017, 11:09:32 PM
     Author     : Marlon Cordova
+    E     : Marlon Cordova
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,24 +15,24 @@
         <%@include file="../template/header.jsp" %>
     </head>
     <body>
-        <%@include file="../template/menu.jsp" %>
+        <%//@include file="../template/menu.jsp" %>
           
         <div class="container-fluid" style="padding-top: 10px; padding-bottom: 50px;">     
             
-             <nav aria-label="breadcrumb" role="navigation">
+            <!--<nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
                   <li class="breadcrumb-item"><a href="<c:url value = "/intranet"/>">Atención al Ciudadano</a></li>
                   <li class="breadcrumb-item" aria-current="page"><a href="<c:url value = "/intranet/solicitud"/>">Solicitudes</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Ver</li>
                 </ol>
-            </nav>               
+            </nav>-->               
              
-            <div class="card">
-                <div class="card-header">                 
+            <div class="n-card">
+                <div class="n-card-header">                 
                     <h3>${solicitud.tipo} </h3>
                 </div>
-                <div class="card-body">
+                <div class="n-card-body">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -89,7 +90,7 @@
                                 <label>Documento</label>
                                 <span  class="form-control">
                                     <c:if test="${not empty solicitud.file}">
-                                        <a href="<c:url value = "/resources/file/" />${solicitud.file}">Descargar</a>
+                                        <a target='_blank' href="${solicitud.file}">Visualizar archivo</a>
                                     </c:if>
                                 </span>
                             </div>  
@@ -136,10 +137,7 @@
             </div>             
          
                   
-        </div>        
-    
- 
-        <%@include file="../template/footer.jsp" %>
+        </div>
         <%@include file="../template/footerjs.jsp" %>
     </body>
 </html>

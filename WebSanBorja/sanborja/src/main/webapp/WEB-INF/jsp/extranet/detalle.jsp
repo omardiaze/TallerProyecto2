@@ -1,8 +1,7 @@
 <%-- 
-    Document   : view
-    Created on : 04/12/2017, 11:09:32 PM
-    Author     : Marlon Cordova
-    E     : Marlon Cordova
+    Document   : detalle
+    Created on : Apr 28, 2018, 4:41:54 PM
+    Author     : Omar
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,27 +11,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="../template/header.jsp" %>
+        <%@include file="../intranet/template/header.jsp" %>
     </head>
     <body>
-        <%//@include file="../template/menu.jsp" %>
+        
+        <div id="title">
+            <table style="width: 100%; background-color: #F8F9FA">
+                <tr>
+                    <td width="120px" align="left" style="padding: 10px">
+                        <img src="<c:url value="/resources/images/logosb1.png"/>" height="80">
+                    </td>
+                </tr> 
+            </table>
+        </div>
           
-        <div class="container-fluid" style="padding-top: 10px; padding-bottom: 50px;">     
-            
-            <!--<nav aria-label="breadcrumb" role="navigation">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item"><a href="<c:url value = "/intranet"/>">Atención al Ciudadano</a></li>
-                  <li class="breadcrumb-item" aria-current="page"><a href="<c:url value = "/intranet/solicitud"/>">Solicitudes</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Ver</li>
-                </ol>
-            </nav>-->               
+        <div class="container-fluid" style="padding-top: 10px; padding-bottom: 50px;">                                    
              
-            <div class="n-card">
-                <div class="n-card-header">                 
+            <div class="card">
+                <div class="card-header">                 
                     <h3>${solicitud.tipo} </h3>
                 </div>
-                <div class="n-card-body">
+                <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -137,7 +136,10 @@
             </div>             
          
                   
-        </div>
-        <%@include file="../template/footerjs.jsp" %>
+        </div>        
+    
+ 
+        <%@include file="../intranet/template/footer.jsp" %>
+        <%@include file="../intranet/template/footerjs.jsp" %>
     </body>
 </html>

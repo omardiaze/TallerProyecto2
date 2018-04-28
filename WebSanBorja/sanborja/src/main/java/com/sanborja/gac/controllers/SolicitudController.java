@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  *
  * @author Marlon Cordova
+ * @update by Omar Diaz
  */
 @Controller
 public class SolicitudController {
@@ -108,7 +109,7 @@ public class SolicitudController {
         return "intranet/solicitud/view";
     }
     
-     @RequestMapping(value = "/intranet/solicitud/eliminar/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/intranet/solicitud/eliminar/{id}", method = RequestMethod.GET)
     public String delete(Model model, HttpServletRequest request, HttpServletResponse response,
             @PathVariable int id)
     {
