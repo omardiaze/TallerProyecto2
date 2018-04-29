@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  *
  * @author Marlon Cordova
+ * @update by Omar Diaz 
  */
 @Controller
 public class TipoSolicitudController {
