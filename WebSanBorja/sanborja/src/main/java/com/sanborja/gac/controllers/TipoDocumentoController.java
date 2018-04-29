@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 /**
  *
  * @author Marlon Cordova
+ * @update by Omar Diaz 
  */
 @Controller
 public class TipoDocumentoController {
